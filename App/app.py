@@ -34,32 +34,16 @@ from time import process_time
 def loadCSVFile (file, lst, sep=";"):
     """
     Carga un archivo csv a una lista
-    Args:
-        file 
-            Archivo de texto del cual se cargaran los datos requeridos.
-        lst :: []
-            Lista a la cual quedaran cargados los elementos despues de la lectura del archivo.
-        sep :: str
-            Separador escodigo para diferenciar a los distintos elementos dentro del archivo.
-    Try:
-        Intenta cargar el archivo CSV a la lista que se le pasa por parametro, si encuentra algun error
-        Borra la lista e informa al usuario
-    Returns: None   
     """
     del lst[:]
     print("Cargando archivo ....")
     t1_start = process_time() #tiempo inicial
     dialect = csv.excel()
     dialect.delimiter=sep
-    try:
-        with open(file, encoding="utf-8") as csvfile:
-            spamreader = csv.DictReader(csvfile, dialect=dialect)
-            for row in spamreader: 
-                lst.append(row)
-    except:
-        del lst[:]
-        print("Se presento un error en la carga del archivo")
-    
+    with open(file) as csvfile:
+        spamreader = csv.DictReader(csvfile, dialect=dialect)
+        for row in spamreader: 
+            lst.append(row)
     t1_stop = process_time() #tiempo final
     print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
 
@@ -77,23 +61,13 @@ def printMenu():
 def countElementsFilteredByColumn(criteria, column, lst):
     """
     Retorna cuantos elementos coinciden con un criterio para una columna dada  
-    Args:
-        criteria:: str
-            Critero sobre el cual se va a contar la cantidad de apariciones
-        column
-            Columna del arreglo sobre la cual se debe realizar el conteo
-        list
-            Lista en la cual se realizará el conteo, debe estar inicializada
-    Return:
-        counter :: int
-            la cantidad de veces ue aparece un elemento con el criterio definido
     """
     if len(lst)==0:
         print("La lista esta vacía")  
         return 0
     else:
         t1_start = process_time() #tiempo inicial
-        counter=0 #Cantidad de repeticiones
+        counter=0
         for element in lst:
             if criteria.lower() in element[column].lower(): #filtrar por palabra clave 
                 counter+=1
@@ -109,13 +83,6 @@ def countElementsByCriteria(criteria, column, lst):
 
 
 def main():
-    """
-    Método principal del programa, se encarga de manejar todos los metodos adicionales creados
-
-    Instancia una lista vacia en la cual se guardarán los datos cargados desde el archivo
-    Args: None
-    Return: None 
-    """
     lista = [] #instanciar una lista vacia
     while True:
         printMenu() #imprimir el menu de opciones en consola
