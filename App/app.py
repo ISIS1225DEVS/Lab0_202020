@@ -69,7 +69,7 @@ def printMenu():
     """
     Imprime el menu de opciones
     """
-    print("\nBienvenido")
+    print("\nBienvenido Test")
     print("1- Cargar Datos")
     print("2- Contar los elementos de la Lista")
     print("3- Contar elementos filtrados por palabra clave")
