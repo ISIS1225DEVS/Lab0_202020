@@ -9,7 +9,7 @@
  *
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU General Public License as published by<
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
@@ -108,7 +108,15 @@ def countElementsByCriteria(criteria, column, lst):
     """
     Retorna la cantidad de elementos que cumplen con un criterio para una columna dada
     """
-    return 0
+    contador = 0
+    
+    for i in lst:
+        if (lst[i]["director_name"]).lower() == criteria.lower(): #Comparación director
+            if lst[i]["vote_average"]>=6:
+                contador += 1   #Número de películas buenas o con votación positiva
+                promedio = contador/(lst[i]["vote_average"])                  
+
+    return (contador,promedio)
 
 
 def main():
@@ -125,7 +133,7 @@ def main():
         inputs = input('Seleccione una opción para continuar\n')  # leer opción ingresada
         if len(inputs) > 0:
             if int(inputs[0]) == 1:  # opcion 1
-                loadCSVFile("Data/test.csv", lista)  # llamar funcion cargar datos
+                loadCSVFile("Data/MoviesDetailsCleaned-large.csv", lista)  # llamar funcion cargar datos
                 print("Datos cargados, " + str(len(lista)) + " elementos cargados")
             elif int(inputs[0]) == 2:  # opcion 2
                 if len(lista) == 0:  # obtener la longitud de la lista
