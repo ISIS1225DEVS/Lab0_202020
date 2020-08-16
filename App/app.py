@@ -133,7 +133,7 @@ def main():
     casting_list = []  # instanciar una lista vacia
     while True:
         printMenu()  # imprimir el menu de opciones en consola
-        inputs = input('Seleccione una opción para continuar\n')  # leer opción ingresada
+        inputs = input('Seleccione una opción para continuar:\n')  # leer opción ingresada
         if len(inputs) > 0:
             if int(inputs[0]) == 1:  # opcion 1
                 loadCSVFile("../Data/MoviesDetailsCleaned-small.csv", "../Data/MoviesCastingRaw-small.csv",
@@ -148,9 +148,9 @@ def main():
                 else:
                     print("La lista tiene " + str(len(details_list)) + " elementos")
             elif int(inputs[0]) == 3:  # opcion 3
-                criteria = input('Ingrese palabra de búsqueda por nombre de película\n')  # filtrar columna
-                counter = countElementsFilteredByColumn(criteria, "title", details_list)
-                print("Coinciden", counter, "elementos con el criterio:", criteria)
+                criteria = input('Ingrese un director para consultar su cantidad de películas:\n')  # filtrar columna
+                counter_movies = countElementsFilteredByColumn(criteria, "director_name", casting_list)
+                print("Coinciden", counter_movies, "elementos con el director", criteria)
             elif int(inputs[0]) == 4:  # opcion 4
                 criteria = input('Ingrese el criterio de búsqueda\n')
                 counter = countElementsByCriteria(criteria, 0, details_list)
