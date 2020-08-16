@@ -89,7 +89,7 @@ def countElementsFilteredByColumn(criteria, column, lst):
             Lista en la cual se realizará el conteo, debe estar inicializada
     Return:
         counter :: int
-            la cantidad de veces ue aparece un elemento con el criterio definido
+            la cantidad de veces que aparece un elemento con el criterio definido
     """
     if len(lst) == 0:
         print("La lista esta vacía")
@@ -98,11 +98,20 @@ def countElementsFilteredByColumn(criteria, column, lst):
         t1_start = process_time()  # tiempo inicial
         counter = 0  # Cantidad de repeticiones
         for element in lst:
-            if criteria.lower() in element[column].lower():  # filtrar por palabra clave
+            if criteria.lower() in element[column].lower() and element.lower() >=6:  # filtrar por palabra clave
                 counter += 1
         t1_stop = process_time()  # tiempo final
         print("Tiempo de ejecución ", t1_stop - t1_start, " segundos")
     return counter
+
+
+
+def promedio(lst,column):
+    sum_num = 0
+    for element in lst:
+            
+                
+
 
 
 def countElementsByCriteria(criteria, column, lst):
@@ -115,7 +124,7 @@ def countElementsByCriteria(criteria, column, lst):
         t2_start = process_time()  # tiempo inicial
         counter = 0  # Cantidad de repeticiones  
         for element in lst:
-            if element.lower() == criteria[column].lower() and element.lower() >= 6: # filtrar por cantidad de elementos
+            if element.lower() == criteria[column].lower(): # filtrar por cantidad de elementos
                 counter += 1
         t2_stop = process_time()  # tiempo final
         print("Tiempo de ejecución ", t2_stop - t2_start, " segundos")
