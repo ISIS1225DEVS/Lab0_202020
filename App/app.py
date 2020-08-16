@@ -23,7 +23,8 @@
  """
 
 """
-  Este módulo es una aplicación básica con un menú de opciones para cargar datos, contar elementos, y hacer búsquedas sobre una lista.
+  Este módulo es una aplicación básica con un menú de opciones para
+   cargar datos, contar elementos, y hacer búsquedas sobre una lista.
 """
 
 import config as cf
@@ -32,35 +33,43 @@ import csv
 from time import process_time
 
 
-def loadCSVFile(file, lst, sep=";"):
+def loadCSVFile(file_d, file_c, lst_d, lst_c, sep=";"):
     """
     Carga un archivo csv a una lista
     Args:
-        file 
-            Archivo de texto del cual se cargaran los datos requeridos.
-        lst :: []
-            Lista a la cual quedaran cargados los elementos despues de la lectura del archivo.
+        file_d
+            Archivo de texto del cual se cargaran los detalles de las películas.
+        file_c
+            Archivo de texto del cual se cargaran los castings de las películas.
+        lst_d :: []
+            Lista a la cual quedaran cargados los detalles despues de la lectura del archivo.
+        lst_c :: []
+            Lista a la cual quedaran cargados los castings despues de la lectura del archivo.
         sep :: str
-            Separador escodigo para diferenciar a los distintos elementos dentro del archivo.
+            Separadores código para diferenciar a los distintos elementos dentro del archivo.
     Try:
         Intenta cargar el archivo CSV a la lista que se le pasa por parametro, si encuentra algun error
         Borra la lista e informa al usuario
     Returns: None   
     """
-    del lst[:]
-    print("Cargando archivo ....")
+    del lst_d[:]
+    del lst_c[:]
+    print("Cargando archivos...")
     t1_start = process_time()  # tiempo inicial
     dialect = csv.excel()
     dialect.delimiter = sep
     try:
-        with open(file, encoding="utf-8") as csvfile:
-            spamreader = csv.DictReader(csvfile, dialect=dialect)
-            for row in spamreader:
-                lst.append(row)
+        with open(file_d, encoding="utf-8-sig") as csvfile_d, open(file_c, encoding="utf-8-sig") as csvfile_c:
+            spamreader_d = csv.DictReader(csvfile_d, dialect=dialect)
+            spamreader_c = csv.DictReader(csvfile_c, dialect=dialect)
+            for row in spamreader_d:
+                lst_d.append(row)
+            for row in spamreader_c:
+                lst_c.append(row)
     except:
-        del lst[:]
-        print("Se presento un error en la carga del archivo")
-
+        del lst_d[:]
+        del lst_c[:]
+        print("Se presento un error en la carga de los archivos")
     t1_stop = process_time()  # tiempo final
     print("Tiempo de ejecución ", t1_stop - t1_start, " segundos")
 
@@ -85,7 +94,7 @@ def countElementsFilteredByColumn(criteria, column, lst):
             Critero sobre el cual se va a contar la cantidad de apariciones
         column
             Columna del arreglo sobre la cual se debe realizar el conteo
-        list
+        lst
             Lista en la cual se realizará el conteo, debe estar inicializada
     Return:
         counter :: int
@@ -120,27 +129,32 @@ def main():
     Args: None
     Return: None 
     """
-    lista = []  # instanciar una lista vacia
+    details_list = []  # instanciar una lista vacia
+    casting_list = []  # instanciar una lista vacia
     while True:
         printMenu()  # imprimir el menu de opciones en consola
         inputs = input('Seleccione una opción para continuar\n')  # leer opción ingresada
         if len(inputs) > 0:
             if int(inputs[0]) == 1:  # opcion 1
-                loadCSVFile("Data/test.csv", lista)  # llamar funcion cargar datos
-                print("Datos cargados, " + str(len(lista)) + " elementos cargados")
+                loadCSVFile("../Data/MoviesDetailsCleaned-small.csv", "../Data/MoviesCastingRaw-small.csv",
+                            details_list, casting_list)  # llamar funcion cargar datos
+                if len(details_list) == len(casting_list):
+                    print("Datos cargados, " + str(len(details_list)) + " elementos cargados en listas")
+                else:
+                    print("Datos cargados, aunque inconsistentes")
             elif int(inputs[0]) == 2:  # opcion 2
-                if len(lista) == 0:  # obtener la longitud de la lista
+                if len(details_list) == 0:  # obtener la longitud de la lista
                     print("La lista esta vacía")
                 else:
-                    print("La lista tiene " + str(len(lista)) + " elementos")
+                    print("La lista tiene " + str(len(details_list)) + " elementos")
             elif int(inputs[0]) == 3:  # opcion 3
                 criteria = input('Ingrese el criterio de búsqueda\n')
                 counter = countElementsFilteredByColumn(criteria, "nombre", lista)  # filtrar una columna por criterio
                 print("Coinciden ", counter, " elementos con el crtierio: ", criteria)
             elif int(inputs[0]) == 4:  # opcion 4
                 criteria = input('Ingrese el criterio de búsqueda\n')
-                counter = countElementsByCriteria(criteria, 0, lista)
-                print("Coinciden ", counter, " elementos con el crtierio: '", criteria, "' (en construcción ...)")
+                counter = countElementsByCriteria(criteria, 0, details_list)
+                print("Coinciden", counter, "elementos con el crtierio: '", criteria, "' (en construcción ...)")
             elif int(inputs[0]) == 0:  # opcion 0, salir
                 sys.exit(0)
 
