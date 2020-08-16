@@ -134,7 +134,7 @@ def countElementsByCriteria(criteria, vote_average, lst_d, lst_c):
             for element in lst_d:
                 if movie['id'] == element['id']:
                     actual_vote = float(element['vote_average'])
-                    if actual_vote >= 6:
+                    if actual_vote >= vote_average:
                         good_movies_votes.append(actual_vote)
         # Calculate number of good movies and total vote average of director.
         counter_good_movies = len(good_movies_votes)
