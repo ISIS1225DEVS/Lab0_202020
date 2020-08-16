@@ -148,9 +148,9 @@ def main():
                 else:
                     print("La lista tiene " + str(len(details_list)) + " elementos")
             elif int(inputs[0]) == 3:  # opcion 3
-                criteria = input('Ingrese el criterio de búsqueda\n')
-                counter = countElementsFilteredByColumn(criteria, "nombre", lista)  # filtrar una columna por criterio
-                print("Coinciden ", counter, " elementos con el crtierio: ", criteria)
+                criteria = input('Ingrese palabra de búsqueda por nombre de película\n')  # filtrar columna
+                counter = countElementsFilteredByColumn(criteria, "title", details_list)
+                print("Coinciden", counter, "elementos con el criterio:", criteria)
             elif int(inputs[0]) == 4:  # opcion 4
                 criteria = input('Ingrese el criterio de búsqueda\n')
                 counter = countElementsByCriteria(criteria, 0, details_list)
