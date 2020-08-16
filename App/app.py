@@ -109,7 +109,17 @@ def countElementsByCriteria(criteria, column, lst):
     """
     Retorna la cantidad de elementos que cumplen con un criterio para una columna dada
     """
-    return 0
+    if len(lst) == 0:
+        print("La lista esta vacía")
+    else:
+        t2_start = process_time()  # tiempo inicial
+        counter = 0  # Cantidad de repeticiones  
+        for element in lst:
+            if element.lower() == criteria[column].lower() and element.lower() >= 6: # filtrar por cantidad de elementos
+                counter += 1
+        t2_stop = process_time()  # tiempo final
+        print("Tiempo de ejecución ", t2_stop - t2_start, " segundos")
+    return counter
 
 
 def main():
