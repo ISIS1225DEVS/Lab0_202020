@@ -104,20 +104,27 @@ def countElementsFilteredByColumn(criteria, column, lst):
     return counter
 
 
+
 def countElementsByCriteria(criteria, column, lst):
     """
     Retorna la cantidad de elementos que cumplen con un criterio para una columna dada
     """
+    lista = []
+    pr =[]
     contador = 0
-    
+    lista2 = loadCSVFile("Data/MoviesCastingRaw-large.csv", lista) 
+    for i in lista2:
+        if (lst[i]["director_name"]).lower() == criteria.lower():
+            lista.append(lst[i]["id"])
+            print(lista)
+
     for i in lst:
-        if (lst[i]["director_name"]).lower() == criteria.lower(): #Comparación director
-            if lst[i]["vote_average"]>=6:
-                contador += 1   #Número de películas buenas o con votación positiva
-                promedio = contador/(lst[i]["vote_average"])                  
+        if (lista[i]["id"]) == lst[i]["id"]: #Comparación director
+            pr.append(lst[i]["vote_average"])
+            contador += 1   #Número de películas buenas o con votación positiva
+            promedio = sum(pr)/contador                  
 
     return (contador,promedio)
-
 
 def main():
     """
