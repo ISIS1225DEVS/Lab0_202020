@@ -31,6 +31,9 @@ import sys
 import csv
 from time import process_time 
 
+listaCalif = list()
+listaCasting = list()
+
 def loadCSVFile (file, lst, sep=";"):
     """
     Carga un archivo csv a una lista
@@ -105,7 +108,37 @@ def countElementsByCriteria(criteria, column, lst):
     """
     Retorna la cantidad de elementos que cumplen con un criterio para una columna dada
     """
-    return 0
+    t1_start = process_time() #tiempo inicial
+    listaMovies = []
+    count = 0
+    prom = 0.0
+    actual = ""
+    
+    loadCSVFile ("./Data/MoviesCastingRaw-small.csv", listaCasting, sep=";")
+    loadCSVFile ("./Data/SmallMoviesDetailsCleaned.csv", listaCalif, sep=";")
+
+
+    for casting in listaCasting:
+        if casting["director_name"] == criteria:
+            listaMovies.append(casting["id"])
+
+    if len(listaMovies) > 0:
+        actual = listaMovies[count]
+
+    for movie in listaCalif:
+        
+        if movie["id"] == actual and float(movie["vote_average"]) >= 6:
+            prom = prom + float(movie["vote_average"])
+            count = count + 1
+            if len(listaMovies) > count:
+                actual = listaMovies[count]
+            else:
+                break            
+    t1_stop = process_time() #tiempo final
+     
+    print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
+    return count,prom/count
+
 
 
 def main():
