@@ -123,8 +123,7 @@ def countElementsByCriteria(criteria,lst):
             if lst[i]["vote_average"]>= 6:
                 pr.append(lst[i]["vote_average"])
                 contador += 1   #Número de películas buenas o con votación positiva
-                promedio = sum(pr)/contador       
-                print("1")           
+                promedio = sum(pr)/contador               
 
     return (contador,promedio)
 
