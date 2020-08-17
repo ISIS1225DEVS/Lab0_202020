@@ -130,10 +130,10 @@ def countElementsByCriteria(criteria, lst, lst2,dif):
         suma+=cal
 
     if len(buenas) != 0:
-        promedio = suma/len(buenas)
+        promedio = round(suma/len(buenas),2)
 
     t1_stop = process_time()
-    print("Tiempo de ejecuciÃ³n ",t1_stop-t1_start," segundos")
+    print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
     
     return (counter,promedio)
     
@@ -141,9 +141,9 @@ def countElementsByCriteria(criteria, lst, lst2,dif):
 
 def main():
     """
-    MÃ©todo principal del programa, se encarga de manejar todos los metodos adicionales creados
+    Método principal del programa, se encarga de manejar todos los metodos adicionales creados
 
-    Instancia una lista vacia en la cual se guardarÃ¡n los datos cargados desde el archivo
+    Instancia una lista vacia en la cual se guardarán los datos cargados desde el archivo
     Args: None
     Return: None 
     """
@@ -153,25 +153,25 @@ def main():
         dif = "\ufeffid"
     while True:
         printMenu() #imprimir el menu de opciones en consola
-        inputs =input('Seleccione una opciÃ³n para continuar\n') #leer opciÃ³n ingresada
+        inputs =input('Seleccione una opción para continuar\n') #leer opción ingresada
         if len(inputs)>0:
             if int(inputs[0])==1: #opcion 1
-                input1 = input("Ingrese la ruta del archivo para las pelÃ­culas:")
+                input1 = input("Ingrese la ruta del archivo para las películas:")
                 loadCSVFile(input1, lista) #llamar funcion cargar datos
-                print("Datos de pelÃ­culas cargados, "+str(len(lista))+" elementos cargados")
+                print("Datos de películas cargados, "+str(len(lista))+" elementos cargados")
                 input2 = input("Ingrese la ruta del archivo para el casting:")
                 loadCSVFile(input2, lista2) 
                 print("Datos de casting cargados, "+str(len(lista2))+" elementos cargados")
             elif int(inputs[0])==2: #opcion 2
                 if len(lista)==0: #obtener la longitud de la lista
-                    print("La lista de pelÃ­culas esta vacÃ­a")    
-                else: print("La lista de pelÃ­culas tiene "+str(len(lista))+" elementos")
+                    print("La lista de películas esta vacía")    
+                else: print("La lista de películas tiene "+str(len(lista))+" elementos")
                 if len(lista2)==0: 
-                    print("La lista de casting esta vacÃ­a")    
+                    print("La lista de casting esta vacía")    
                 else: print("La lista de casting tiene "+str(len(lista2))+" elementos")
             elif int(inputs[0])==3: #opcion 3
-                x = int(input("Â¿Desea buscar en la lista de pelÃ­culas o en la lista de casting? (Seleccione 1 o 2 respectivamente):"))
-                criteria =input('Ingrese el criterio de bÃºsqueda: \n')
+                x = int(input("¿Desea buscar en la lista de películas o en la lista de casting? (Seleccione 1 o 2 respectivamente):"))
+                criteria =input('Ingrese el criterio de búsqueda: \n')
                 columna = input("Ingrese la columna en que desea buscar (nombre): ")
                 if x==1:
                     counter=countElementsFilteredByColumn(criteria, columna, lista) #filtrar una columna por criterio  
@@ -188,7 +188,7 @@ def main():
                     dif = "id"
                 criteria =input('Ingrese el nombre del director\n')
                 counter=countElementsByCriteria(criteria,lista2,lista,dif)
-                print("Existen",counter[0],"peliculas buenas del director",criteria,"con un promedio de votaciÃ³n de",counter[1])
+                print("Existen",counter[0],"peliculas buenas del director",criteria,"con un promedio de votación de",counter[1])
             elif int(inputs[0])==0: #opcion 0, salir
                 sys.exit(0)
 
