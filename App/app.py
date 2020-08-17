@@ -116,22 +116,35 @@ def main():
     Args: None
     Return: None 
     """
-    lista = [] #instanciar una lista vacia
+    lista1= []
+    lista2= [] #instanciar una lista vacia
     while True:
         printMenu() #imprimir el menu de opciones en consola
         inputs =input('Seleccione una opción para continuar\n') #leer opción ingresada
         if len(inputs)>0:
             if int(inputs[0])==1: #opcion 1
-                loadCSVFile("Data/AllMoviesCastingRaw.csv", lista) #llamar funcion cargar datos
-                print("Datos cargados, "+str(len(lista))+" elementos cargados")
+                loadCSVFile("Data/AllMoviesCastingRaw.csv", lista1) #llamar funcion cargar datos
+                loadCSVFile("Data/AllMoviesDetailsCleaned.csv",lista2)
+                print("Datos cargados del archivo Casting, "+str(len(lista1))+" elementos cargados")
+                print("Datos cargados del archivo Detalles, "+str(len(lista2))+" elementos cargados")     
             elif int(inputs[0])==2: #opcion 2
-                if len(lista)==0: #obtener la longitud de la lista
+                if len(lista1)==0 and len(lista2)==0: #obtener la longitud de la lista
                     print("La lista esta vacía")    
-                else: print("La lista tiene "+str(len(lista))+" elementos")
+                else: 
+                    print("La lista del archivo Casting tiene: "+str(len(lista1))+" elementos")
+                    print("La lista del archivo Detalles tiene: "+str(len(lista2))+" elementos")
             elif int(inputs[0])==3: #opcion 3
+                lista=int(input("Digite numero ( 1 o 2) para buscar en una lista especifica: "))
                 criteria =input('Ingrese el criterio de búsqueda\n')
-                counter=countElementsFilteredByColumn(criteria, "nombre", lista) #filtrar una columna por criterio  
-                print("Coinciden ",counter," elementos con el crtierio: ", criteria  )
+                columna=input("Ingrese la columna: ")
+            
+                if lista==1:
+                    counter=countElementsFilteredByColumn(criteria, columna, lista1) #filtrar una columna por criterio  
+                    print("Coinciden ",counter," elementos con el criterio: ", criteria  )
+                elif lista==2:
+                    counter=countElementsFilteredByColumn(criteria,columna, lista2) #filtrar una columna por criterio  
+                    print("Coinciden ",counter," elementos con el criterio: ", criteria  )
+
             elif int(inputs[0])==4: #opcion 4
                 criteria =input('Ingrese el criterio de búsqueda\n')
                 counter=countElementsByCriteria(criteria,0,lista)
