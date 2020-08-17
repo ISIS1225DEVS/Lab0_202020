@@ -104,10 +104,15 @@ def countElementsFilteredByColumn(criteria, column, lst):
     return counter
 
 def countElementsByCriteria(criteria, column, lst):
-    """
-    Retorna la cantidad de elementos que cumplen con un criterio para una columna dada
-    """
-    return 0
+    count=0
+    v=0
+    for i in column:
+        a=column.index(i)
+        if i>=6 and lst[a]==criteria:
+            count+=1
+            v+=i
+    promedio=v/count
+    return count, promedio
 
 
 def main():
