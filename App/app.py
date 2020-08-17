@@ -133,14 +133,8 @@ def main():
     Args: None
     Return: None 
     """
-    casting = [] #instanciar una lista vacia
-    
-    
-    
+    casting = []
     detalles = []
-
-
-    
     while True:
         printMenu() #imprimir el menu de opciones en consola
         inputs =input('Seleccione una opción para continuar\n') #leer opción ingresada
