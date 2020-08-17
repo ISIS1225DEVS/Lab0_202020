@@ -7,6 +7,7 @@
 *	Sorting: archivos Python que implementan los algoritmos de ordenamiento.
 *	Test: pruebas unitarias en Python para validar el código desarrollado.
 
-* Hernán Buitrago 201512807
-* Karen Evens 201718885
-* Wilton Martinez 202014514
+Grupo 7
+Hernán Buitrago/201512807
+Karen Evens/201718885
+Wilton Martinez/202014514
