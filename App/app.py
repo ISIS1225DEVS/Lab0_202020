@@ -114,7 +114,12 @@ def encontrarBP(name,lst):
             contador +=1
     return contador
 
-def promedio()
+def ID(name,lst):
+    loadCSVFile("Data/MoviesCastingRaw-large.csv", lst)
+    numofmovies = []
+    for element in lst:
+            if criteria.lower() in element['director_name'].lower():  # filtrar por nombre
+                numofmovies.append(element)
 
 
 def countElementsByCriteria(criteria, column,lst):
