@@ -272,7 +272,7 @@ def main():
                 else:
                     t1_start = process_time()
                     idf = filtro_por_criterio_columna(
-                        "id", "director_name", lambda x, y: x == y, "Peter Jackson", Base1)
+                        "id", "director_name", lambda x, y: x == y, director, Base1)
                     n_peliculas_buenas = count_por_criterio_columna(
                         "vote_average", lambda x, y: float(x) > y, 6, idf, "id", Base2)
                     t1_stop = process_time()  # tiempo final
@@ -280,7 +280,7 @@ def main():
                           t1_stop - t1_start, " segundos")
 
                     print(
-                        "La cantidad de peliculas buenas del director {} son {}".format(director,))
+                        "La cantidad de peliculas buenas del director {} son {}".format(director,n_peliculas_buenas))
 
             elif int(inputs[0]) == 0:  # opcion 0, salir
                 sys.exit(0)
