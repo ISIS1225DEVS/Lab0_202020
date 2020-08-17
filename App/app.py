@@ -47,6 +47,7 @@ def loadCSVFile (file, lst, sep=";"):
     Returns: None   
     """
     del lst[:]
+    file="Data//MoviesCastingRaw-small.csv"
     print("Cargando archivo ....")
     t1_start = process_time() #tiempo inicial
     dialect = csv.excel()
