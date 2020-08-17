@@ -30,6 +30,7 @@ import config as cf
 import sys
 import csv
 from time import process_time 
+import pytest
 
 def loadCSVFile (file, lst, sep=";"):
     """
@@ -48,7 +49,7 @@ def loadCSVFile (file, lst, sep=";"):
     """
     del lst[:]
     print("Cargando archivo ....")
-    t1_start = process_time() #tiempo inicial
+    t1_start = process_time()
     dialect = csv.excel()
     dialect.delimiter=sep
     try:
@@ -60,7 +61,7 @@ def loadCSVFile (file, lst, sep=";"):
         del lst[:]
         print("Se presento un error en la carga del archivo")
     
-    t1_stop = process_time() #tiempo final
+    t1_stop = process_time()
     print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
 
 def printMenu():
@@ -88,27 +89,43 @@ def countElementsFilteredByColumn(criteria, column, lst):
         counter :: int
             la cantidad de veces ue aparece un elemento con el criterio definido
     """
+    lista = []
+    cont = 0
     if len(lst)==0:
-        print("La lista esta vacía")  
-        return 0
+        x = "La lista esta vacía"
+        return x
     else:
-        t1_start = process_time() #tiempo inicial
-        counter=0 #Cantidad de repeticiones
-        for element in lst:
-            if criteria.lower() in element[column].lower(): #filtrar por palabra clave 
-                counter+=1
-        t1_stop = process_time() #tiempo final
-        print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
-    return counter
+        for objeto in lst:
+            x = criteria.lower()
+            y = objeto[column].lower()
+            if x in y:
+                lista.append(cont)
+                cont = cont + 1
+            else:
+                cont = cont + 1
+    return len(lista)
 
 def countElementsByCriteria(criteria, column, lst):
     """
     Retorna la cantidad de elementos que cumplen con un criterio para una columna dada
     """
-    return 0
 
+    inicio = process_time()
+    lista=countElementsFilteredByColumn(criteria,column,lst)
+    movies=[]
+    loadCSVFile("Data/AllMoviesDetailsCleaned.csv",movies)
+    medial=[]
+    for i in range(0, len(lista)):
+        if float(movies[lista[i]]["vote_average"])>=6.0:
+           medial.append(float(movies[lista[i]]["vote_average"]))
+    promedio=round(sum(medial)/len(medial),1)
+    res=(len(medial),promedio)
+    final = process_time()
+    print("Tiempo de ejecución ",final-inicio," segundos")
+    return res
 
 def main():
+
     """
     Método principal del programa, se encarga de manejar todos los metodos adicionales creados
 
@@ -122,7 +139,7 @@ def main():
         inputs =input('Seleccione una opción para continuar\n') #leer opción ingresada
         if len(inputs)>0:
             if int(inputs[0])==1: #opcion 1
-                loadCSVFile("Data/test.csv", lista) #llamar funcion cargar datos
+                loadCSVFile("Data/AllMoviesCastingRaw.csv",lista) #llamar funcion cargar datos
                 print("Datos cargados, "+str(len(lista))+" elementos cargados")
             elif int(inputs[0])==2: #opcion 2
                 if len(lista)==0: #obtener la longitud de la lista
@@ -130,14 +147,16 @@ def main():
                 else: print("La lista tiene "+str(len(lista))+" elementos")
             elif int(inputs[0])==3: #opcion 3
                 criteria =input('Ingrese el criterio de búsqueda\n')
-                counter=countElementsFilteredByColumn(criteria, "nombre", lista) #filtrar una columna por criterio  
+                counter=countElementsFilteredByColumn(criteria, "director_name", lista) #filtrar una columna por criterio  
                 print("Coinciden ",counter," elementos con el crtierio: ", criteria  )
             elif int(inputs[0])==4: #opcion 4
                 criteria =input('Ingrese el criterio de búsqueda\n')
-                counter=countElementsByCriteria(criteria,0,lista)
+                counter=countElementsByCriteria(criteria, "director_name", lista)
                 print("Coinciden ",counter," elementos con el crtierio: '", criteria ,"' (en construcción ...)")
             elif int(inputs[0])==0: #opcion 0, salir
+                print("Gracias")
                 sys.exit(0)
+                
 
 if __name__ == "__main__":
     main()
