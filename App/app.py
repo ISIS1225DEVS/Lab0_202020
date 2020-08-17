@@ -104,8 +104,15 @@ def countElementsFilteredByColumn(criteria, column, lst):
         print("Tiempo de ejecución ", t1_stop - t1_start, " segundos")
     return counter
 
-def encontrar(name,lst)
-    
+def encontrarBP(name,lst):
+    loadCSVFile("Data/MoviesCastingRaw-large.csv", lst)
+    contador = 0
+    lst1 = []
+    for i in range(0,len(lst)):
+        if lst1[i]["vote_average"]>=6:
+            lst1.append(lst1[i]["vote_average"])
+            contador +=1
+    return contador
 
 def promedio()
 
@@ -120,7 +127,7 @@ def countElementsByCriteria(criteria, column,lst):
         t2_start = process_time()  # tiempo inicial
         counter = ""  # Cantidad de repeticiones  
         for i in range(0,len(lst))
-            for j in range (0,len(lst)-1)
+            for j in range (0,len(column)-1)
                 if 
 
 
