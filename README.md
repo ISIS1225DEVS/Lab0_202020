@@ -9,4 +9,5 @@
 
 
 Grupo #6:
-*   Jesús Alejandro Dávila Pinchao - 202014263 - j.davila@uniandes.edu.co
+*   Gabriela Vargas Rojas-202013830-g.vargasr@uniandes.edu.co
+*   Jesús Alejandro Dávila Pinchao-202014263-j.davilap@uniandes.edu.co
