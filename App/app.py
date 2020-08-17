@@ -103,15 +103,19 @@ def countElementsFilteredByColumn(criteria, column, lst):
         print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
     return counter
 
-def countElementsByCriteria(criteria, column, lst):
+def countElementsByCriteria(director_Name, lst_average, lst_director):
+    print()
+    print()
+    t1_start = process_time()
     count=0
     v=0
-    for i in column:
-        a=column.index(i)
-        if i>=6 and lst[a]==criteria:
+    for i in range(len(lst_average)):
+        if float(lst_average[i]["vote_average"])>=6 and director_Name.lower() in lst_director[i]["director_name"].lower():
             count+=1
-            v+=i
+            v+=float(lst_average[i]["vote_average"])
     promedio=v/count
+    t1_stop = process_time() #tiempo final
+    print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
     return count, promedio
 
 
@@ -141,8 +145,13 @@ def main():
                 print("Coinciden ",counter," elementos con el crtierio: ", criteria  )
             elif int(inputs[0])==4: #opcion 4
                 criteria =input('Ingrese el criterio de búsqueda\n')
-                counter=countElementsByCriteria(criteria,0,lista)
-                print("Coinciden ",counter," elementos con el crtierio: '", criteria ,"' (en construcción ...)")
+                lst1 = []
+                lst2 = []
+                loadCSVFile("Data/AllMoviesDetailsCleaned.csv",lst1)
+                loadCSVFile("Data/AllMoviesCastingRaw.csv",lst2)
+                counter=countElementsByCriteria(criteria,lst1,lst2)
+                print()
+                print(counter)
             elif int(inputs[0])==0: #opcion 0, salir
                 sys.exit(0)
 
