@@ -26,34 +26,34 @@ from ADT import list as lt
 Implementa el algoritmo de ordenamiento Quicksort
 """
 
-def partition (lst, lo, hi, lessequalfunction):
+
+def partition(lst, lo, hi, lessequalfunction):
     """
     Función que va dejando el pivot en su lugar, mientras mueve elementos menores a la izquierda del pivot
     y elementos mayores a la derecha del pivot
     """
     follower = leader = lo
     while leader < hi:
-        if (lessequalfunction (lt.getElement(lst, leader), lt.getElement(lst, hi))):
-            lt.exchange (lst, follower, leader)
+        if (lessequalfunction(lt.getElement(lst, leader), lt.getElement(lst, hi))):
+            lt.exchange(lst, follower, leader)
             follower += 1
-        leader +=1
+        leader += 1
     lt.exchange(lst, follower, hi)
     return follower
 
 
-def sort (lst, lo, hi, lessequalfunction):
+def sort(lst, lo, hi, lessequalfunction):
     """
     Se localiza el pivot, utilizando la funcion de particion. 
     Luego se hace la recursión con los elementos a la izquierda del pivot 
     y los elementos a la derecha del pivot 
     """
-    if (lo >= hi ):
+    if (lo >= hi):
         return
-    pivot = partition (lst, lo, hi, lessequalfunction)
-    sort (lst, lo, pivot-1, lessequalfunction)
-    sort (lst, pivot+1, hi, lessequalfunction)
+    pivot = partition(lst, lo, hi, lessequalfunction)
+    sort(lst, lo, pivot - 1, lessequalfunction)
+    sort(lst, pivot + 1, hi, lessequalfunction)
 
 
 def quickSort(lst, lessequalfunction):
-    sort (lst, 1, lt.size(lst), lessequalfunction)
-
+    sort(lst, 1, lt.size(lst), lessequalfunction)

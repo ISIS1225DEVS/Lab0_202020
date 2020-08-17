@@ -22,14 +22,14 @@ import config
 from Utils import error as error
 from DataStructures import liststructure as lt
 
-
 """
   Este módulo implementa el tipo abstracto de datos (TAD) lista. 
   Se puede implementar sobre una estructura de datos encadenada de forma sencilla o doble o 
   como un arreglo
 """
 
-def newList (datastructure='SINGLE_LINKED', cmpfunction=None):
+
+def newList(datastructure='SINGLE_LINKED', cmpfunction=None):
     """Crea una lista vacia.
 
     Args:
@@ -43,8 +43,7 @@ def newList (datastructure='SINGLE_LINKED', cmpfunction=None):
         lst = lt.newList(datastructure, cmpfunction)
         return lst
     except Exception as exp:
-        error.reraise (exp, 'TADList->newList: ')
-    
+        error.reraise(exp, 'TADList->newList: ')
 
 
 def addFirst(lst, element):
@@ -64,10 +63,9 @@ def addFirst(lst, element):
         Exception
     """
     try:
-        lt.addFirst (lst, element)
+        lt.addFirst(lst, element)
     except Exception as exp:
-        error.reraise (exp, 'TADList->addFirst: ')
-
+        error.reraise(exp, 'TADList->addFirst: ')
 
 
 def addLast(lst, element):
@@ -84,13 +82,12 @@ def addLast(lst, element):
         Exception
     """
     try:
-        lt.addLast (lst, element)
+        lt.addLast(lst, element)
     except Exception as exp:
-        error.reraise (exp, 'TADList->addLast: ')
+        error.reraise(exp, 'TADList->addLast: ')
 
 
-
-def isEmpty (lst):
+def isEmpty(lst):
     """ Indica si la lista está vacía
 
     Args: 
@@ -102,7 +99,7 @@ def isEmpty (lst):
     try:
         return lt.isEmpty(lst)
     except Exception as exp:
-        error.reraise (exp, 'TADList->isEmpty: ')
+        error.reraise(exp, 'TADList->isEmpty: ')
 
 
 def size(lst):
@@ -114,14 +111,13 @@ def size(lst):
     Raises: 
         Exception
     """
-    try: 
+    try:
         return lt.size(lst)
     except Exception as exp:
-        error.reraise (exp, 'TADList->size: ')
+        error.reraise(exp, 'TADList->size: ')
 
 
-
-def firstElement (lst):
+def firstElement(lst):
     """ Retorna el primer elemento de una lista no vacía. No se elimina el elemento.
 
     Args: 
@@ -131,13 +127,12 @@ def firstElement (lst):
         Exception
     """
     try:
-        return lt.firstElement (lst)
+        return lt.firstElement(lst)
     except Exception as exp:
-        error.reraise (exp, 'TADList->firstElement: ')
+        error.reraise(exp, 'TADList->firstElement: ')
 
 
-
-def lastElement (lst):
+def lastElement(lst):
     """ Retorna el último elemento de una  lista no vacia.  No se elimina el elemento.
 
     Args:
@@ -146,15 +141,13 @@ def lastElement (lst):
     Raises:
         Exception
     """
-    try: 
+    try:
         return lt.lastElement(lst)
     except Exception as exp:
-        error.reraise (exp, 'TADList->LastElement: ')
+        error.reraise(exp, 'TADList->LastElement: ')
 
 
-
-
-def getElement (lst, pos):
+def getElement(lst, pos):
     """ Retorna el elemento en la posición pos de la lista.
 
     Se recorre la lista hasta el elemento pos, el cual  debe ser mayor que cero y menor o igual al tamaño de la lista.
@@ -167,15 +160,13 @@ def getElement (lst, pos):
     Raises:
         Exception
     """
-    try: 
-        return lt.getElement (lst, pos) 
+    try:
+        return lt.getElement(lst, pos)
     except Exception as exp:
-        error.reraise (exp, 'List->getElement: ')
+        error.reraise(exp, 'List->getElement: ')
 
 
-
-
-def deleteElement (lst, pos):
+def deleteElement(lst, pos):
     """ Elimina el elemento en la posición pos de la lista.
     
     Elimina el elemento que se encuentra en la posición pos de la lista.  Pos debe ser mayor que cero y menor 
@@ -189,14 +180,12 @@ def deleteElement (lst, pos):
         Exception
     """
     try:
-        lt.deleteElement(lst, pos) 
+        lt.deleteElement(lst, pos)
     except Exception as exp:
-        error.reraise (exp, 'TADList->deleteElement: ')
+        error.reraise(exp, 'TADList->deleteElement: ')
 
 
-
-
-def removeFirst (lst):
+def removeFirst(lst):
     """ Remueve el primer elemento de la lista. 
     
     Elimina y retorna el primer elemento de la lista.  El tamaño de la lista se decrementa en uno.  Si la lista
@@ -211,14 +200,12 @@ def removeFirst (lst):
         Exception
     """
     try:
-        return lt.removeFirst (lst)
+        return lt.removeFirst(lst)
     except Exception as exp:
-        error.reraise (exp, 'TADList->removeFirst: ')
+        error.reraise(exp, 'TADList->removeFirst: ')
 
 
-
-
-def removeLast (lst):
+def removeLast(lst):
     """ Remueve el último elemento de la lista.
     
     Elimina el último elemento de la lista  y lo retorna en caso de existir. El tamaño de la lista se decrementa en 1. 
@@ -233,14 +220,12 @@ def removeLast (lst):
         Exception
     """
     try:
-        return lt.removeLast (lst)
+        return lt.removeLast(lst)
     except Exception as exp:
-        error.reraise (exp, 'TADList->removeLast: ')
+        error.reraise(exp, 'TADList->removeLast: ')
 
 
-
-
-def insertElement (lst, element, pos):
+def insertElement(lst, element, pos):
     """ Inserta el elemento element en la posición pos de la lista. 
     
     Inserta el elemento en la posición pos de la lista. La lista puede ser vacía.  Se incrementa en 1 el tamaño de la lista.
@@ -254,15 +239,12 @@ def insertElement (lst, element, pos):
         Exception
     """
     try:
-        lt.insertElement (lst, element, pos)
+        lt.insertElement(lst, element, pos)
     except Exception as exp:
-        error.reraise (exp, 'TADList->insertElement: ')
-    
+        error.reraise(exp, 'TADList->insertElement: ')
 
 
-
-
-def isPresent (lst, element):
+def isPresent(lst, element):
     """ Informa si el elemento element esta presente en la lista. 
     
     Informa si un elemento está en la lista.  Si esta presente, retorna la posición en la que se encuentra 
@@ -278,14 +260,12 @@ def isPresent (lst, element):
         Exception
     """
     try:
-        return lt.isPresent (lst, element)
+        return lt.isPresent(lst, element)
     except Exception as exp:
-        error.reraise (exp, 'TADList->isPresent: ')
+        error.reraise(exp, 'TADList->isPresent: ')
 
 
-
-
-def exchange (lst, pos1, pos2):
+def exchange(lst, pos1, pos2):
     """ Intercambia la informacion en las posiciones pos1 y pos2 de la lista.
 
     Args:
@@ -297,14 +277,12 @@ def exchange (lst, pos1, pos2):
         Exception
     """
     try:
-        lt.exchange (lst, pos1, pos2)
+        lt.exchange(lst, pos1, pos2)
     except Exception as exp:
-        error.reraise (exp, 'List->exchange: ')
+        error.reraise(exp, 'List->exchange: ')
 
 
-
-
-def changeInfo (lst, pos, element):
+def changeInfo(lst, pos, element):
     """ Cambia la informacion contenida en el nodo de la lista que se encuentra en la posicion pos.
     
     Args:   
@@ -315,15 +293,13 @@ def changeInfo (lst, pos, element):
     Raises:
         Exception
     """
-    try: 
-        lt.changeInfo (lst, pos, element)
+    try:
+        lt.changeInfo(lst, pos, element)
     except Exception as exp:
-        error.reraise (exp, 'List->changeInfo: ')
+        error.reraise(exp, 'List->changeInfo: ')
 
 
-
-
-def subList (lst, pos, numelem):
+def subList(lst, pos, numelem):
     """ Retorna una sublista de la lista lst.
     
     Se retorna una lista que contiene los elementos a partir de la posicion pos, con una longitud de numelem elementos.  
@@ -338,8 +314,6 @@ def subList (lst, pos, numelem):
         Exception
     """
     try:
-        return lt.subList (lst, pos, numelem)
+        return lt.subList(lst, pos, numelem)
     except Exception as exp:
-        error.reraise (exp, 'List->subList: ')
-
-
+        error.reraise(exp, 'List->subList: ')

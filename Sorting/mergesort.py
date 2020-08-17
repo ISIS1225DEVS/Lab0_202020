@@ -26,37 +26,38 @@ from ADT import list as lt
 Implementación del algoritmo mergesort.
 """
 
+
 def mergesort(lst, lessfunction):
     size = lt.size(lst)
     if size > 1:
-        mid = (size// 2 )
-        #se divide la lista original, en dos partes, izquierda y derecha, desde el punto mid.
-        leftlist = lt.subList (lst, 1, mid)
-        rightlist = lt.subList (lst, mid+1, size - mid )
+        mid = (size // 2)
+        # se divide la lista original, en dos partes, izquierda y derecha, desde el punto mid.
+        leftlist = lt.subList(lst, 1, mid)
+        rightlist = lt.subList(lst, mid + 1, size - mid)
 
-        #se hace el llamado recursivo con la lista izquierda y derecha
-        mergesort (leftlist, lessfunction)
-        mergesort (rightlist, lessfunction)
+        # se hace el llamado recursivo con la lista izquierda y derecha
+        mergesort(leftlist, lessfunction)
+        mergesort(rightlist, lessfunction)
 
-        #i recorre la lista izquierda, j la derecha y k la lista original
-        i=j=k=1
-        
-        leftelements = lt.size (leftlist)
-        rightelements = lt.size (rightlist)
-   
+        # i recorre la lista izquierda, j la derecha y k la lista original
+        i = j = k = 1
+
+        leftelements = lt.size(leftlist)
+        rightelements = lt.size(rightlist)
+
         while (i <= leftelements) and (j <= rightelements):
-            elemi = lt.getElement(leftlist,i)
-            elemj = lt.getElement(rightlist,j)
-            #compara y ordena los elementos
-            if lessfunction (elemj, elemi):   # caso estricto elemj < elemi
+            elemi = lt.getElement(leftlist, i)
+            elemj = lt.getElement(rightlist, j)
+            # compara y ordena los elementos
+            if lessfunction(elemj, elemi):  # caso estricto elemj < elemi
                 lt.changeInfo(lst, k, elemj)
                 j += 1
-            else:                                              # caso elemi <= elemj
-                lt.changeInfo (lst, k, elemi)
+            else:  # caso elemi <= elemj
+                lt.changeInfo(lst, k, elemi)
                 i += 1
             k += 1
-            
-        #Agrega los elementos que no se comprararon y estan ordenados
+
+        # Agrega los elementos que no se comprararon y estan ordenados
         while i <= leftelements:
             lt.changeInfo(lst, k, lt.getElement(leftlist, i))
             i += 1
@@ -66,4 +67,3 @@ def mergesort(lst, lessfunction):
             lt.changeInfo(lst, k, lt.getElement(rightlist, j))
             j += 1
             k += 1
-

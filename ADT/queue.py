@@ -27,6 +27,7 @@ from DataStructures import liststructure as lt
   Este módulo implementa el tipo abstracto de datos cola (Queue) sobre una lista.
 """
 
+
 def newQueue(datastructure='SINGLE_LINKED'):
     """ Crea una cola vacia
     Args:
@@ -40,11 +41,10 @@ def newQueue(datastructure='SINGLE_LINKED'):
     try:
         return lt.newList(datastructure)
     except Exception as exp:
-        error.reraise (exp, 'TADQueue->newQueue: ')
+        error.reraise(exp, 'TADQueue->newQueue: ')
 
 
-
-def enqueue (queue, element):
+def enqueue(queue, element):
     """Agrega el elemento element en el tope de la pila
     Args:
         queue: La cola donde se insertará el elemento
@@ -56,12 +56,13 @@ def enqueue (queue, element):
         Exception
     """
     try:
-        lt.addLast (queue, element)
+        lt.addLast(queue, element)
         return queue
     except Exception as ex:
         err.reraise(ex, 'enqueue ')
 
-def dequeue (queue):
+
+def dequeue(queue):
     """ Retorna el elemento en la primer posición de la cola, y lo elimina.
      Args:
         queue: La cola donde se eliminará el elemento
@@ -74,11 +75,10 @@ def dequeue (queue):
     try:
         return lt.removeFirst(queue)
     except Exception as exp:
-        error.reraise (exp, 'TADQueue->dequeue: ')
+        error.reraise(exp, 'TADQueue->dequeue: ')
 
 
-
-def peek (queue):
+def peek(queue):
     """ Retorna el elemento en la primer posición de la cola sin eliminarlo
     Args:
         queue: La cola  a examinar
@@ -89,13 +89,12 @@ def peek (queue):
         Exception   
     """
     try:
-        return lt.firstElement (queue)
+        return lt.firstElement(queue)
     except Exception as exp:
-        error.reraise (exp, 'TADQueue->isEmpty: ')   
+        error.reraise(exp, 'TADQueue->isEmpty: ')
 
 
-
-def isEmpty (queue):
+def isEmpty(queue):
     """Informa si la cola es vacía o no 
     Args:
         queue: La cola  a examinar
@@ -108,12 +107,10 @@ def isEmpty (queue):
     try:
         return lt.isEmpty(queue)
     except Exception as exp:
-        error.reraise (exp, 'TADQueue->isEmpty: ')
+        error.reraise(exp, 'TADQueue->isEmpty: ')
 
 
-
-
-def size (queue):
+def size(queue):
     """Informa el número de elementos en la cola
     Args:
         queue: La cola  a examinar
@@ -127,4 +124,4 @@ def size (queue):
     try:
         return lt.size(queue)
     except Exception as exp:
-        error.reraise (exp, 'TADQueue->size: ')
+        error.reraise(exp, 'TADQueue->size: ')

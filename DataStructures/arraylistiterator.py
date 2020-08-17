@@ -19,8 +19,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
-
-
 """
   Este módulo implementa un iterador para recorrer los elementos de una lista 
 """
@@ -34,9 +32,8 @@ def newIterator(lst):
     Returns:
         Un iterador para la lista
     """
-    iterator = {'iterable_lst':lst,'current_node':-1, 'type':'ARRAY_ITERATOR'}
+    iterator = {'iterable_lst': lst, 'current_node': -1, 'type': 'ARRAY_ITERATOR'}
     return iterator
-
 
 
 def hasNext(iterator):

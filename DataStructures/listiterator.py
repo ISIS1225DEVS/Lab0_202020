@@ -19,10 +19,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
-
 from DataStructures import arraylistiterator as ait
 from DataStructures import linkedlistiterator as lit
-
 
 """
   Este módulo implementa un iterador para recorrer los elementos de una lista encadenada
@@ -40,8 +38,7 @@ def newIterator(lst):
     if (lst['type'] == 'ARRAY_LIST'):
         return ait.newIterator(lst)
     else:
-        return lit.newIterator (lst)
-
+        return lit.newIterator(lst)
 
 
 def hasNext(iterator):
@@ -53,11 +50,10 @@ def hasNext(iterator):
     Returns:
         True si existe un siguiente elemento, False de lo contrario
     """
-    if (iterator['type']=='ARRAY_ITERATOR'):
+    if (iterator['type'] == 'ARRAY_ITERATOR'):
         return ait.hasNext(iterator)
-    else: 
+    else:
         return lit.hasNext(iterator)
-
 
 
 def next(iterator):
@@ -68,7 +64,7 @@ def next(iterator):
     Returns:
         El siguiente elemento al último retornado por el iterador
     """
-    if (iterator['type']=='ARRAY_ITERATOR'):
+    if (iterator['type'] == 'ARRAY_ITERATOR'):
         return ait.next(iterator)
     else:
         return lit.next(iterator)

@@ -19,16 +19,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
-
-import pytest 
-import config 
-
+import pytest
+import config
 
 from ADT import list as lt
 
 
-
-def cmpfunction (element1, element2):
+def cmpfunction(element1, element2):
     if element1['book_id'] == element2['book_id']:
         return 0
     elif element1['book_id'] < element2['book_id']:
@@ -38,66 +35,60 @@ def cmpfunction (element1, element2):
 
 
 @pytest.fixture
-def lst ():
+def lst():
     lst = lt.newList('SINGLE_LINKED', cmpfunction)
-    #lst = lt.newList('ARRAY_LIST', cmpfunction)
+    # lst = lt.newList('ARRAY_LIST', cmpfunction)
     return lst
 
 
 @pytest.fixture
-def books ():
+def books():
     books = []
-    books.append({'book_id':'1', 'book_title':'Title 1', 'author':'author 1'})
-    books.append({'book_id':'2', 'book_title':'Title 2', 'author':'author 2'})
-    books.append({'book_id':'3', 'book_title':'Title 3', 'author':'author 3'})
-    books.append({'book_id':'4', 'book_title':'Title 4', 'author':'author 4'})
-    books.append({'book_id':'5', 'book_title':'Title 5', 'author':'author 5'})
-    print (books[0])
+    books.append({'book_id': '1', 'book_title': 'Title 1', 'author': 'author 1'})
+    books.append({'book_id': '2', 'book_title': 'Title 2', 'author': 'author 2'})
+    books.append({'book_id': '3', 'book_title': 'Title 3', 'author': 'author 3'})
+    books.append({'book_id': '4', 'book_title': 'Title 4', 'author': 'author 4'})
+    books.append({'book_id': '5', 'book_title': 'Title 5', 'author': 'author 5'})
+    print(books[0])
     return books
 
 
 @pytest.fixture
 def lstbooks(books):
-    #lst1 = lt.newList('ARRAY_LIST', cmpfunction)
+    # lst1 = lt.newList('ARRAY_LIST', cmpfunction)
     lst2 = lt.newList('SINGLE_LINKED', cmpfunction)
-    for i in range(0,5):    
-        lt.addLast(lst,books[i])    
+    for i in range(0, 5):
+        lt.addLast(lst, books[i])
     return lst
 
 
-def test_empty (lst):
+def test_empty(lst):
     assert lt.isEmpty(lst) == True
     assert lt.size(lst) == 0
 
 
-
-
-def test_addFirst (lst, books):
+def test_addFirst(lst, books):
     assert lt.isEmpty(lst) == True
     assert lt.size(lst) == 0
-    lt.addFirst (lst, books[1])
+    lt.addFirst(lst, books[1])
     assert lt.size(lst) == 1
-    lt.addFirst (lst, books[2])
+    lt.addFirst(lst, books[2])
     assert lt.size(lst) == 2
     book = lt.firstElement(lst)
     assert book == books[2]
 
 
-
-
-def test_addLast (lst, books):
+def test_addLast(lst, books):
     assert lt.isEmpty(lst) == True
     assert lt.size(lst) == 0
-    lt.addLast (lst, books[1])
+    lt.addLast(lst, books[1])
     assert lt.size(lst) == 1
-    lt.addLast (lst, books[2])
+    lt.addLast(lst, books[2])
     assert lt.size(lst) == 2
     book = lt.firstElement(lst)
     assert book == books[1]
     book = lt.lastElement(lst)
     assert book == books[2]
-
-
 
 
 def test_getElement(lstbooks, books):
@@ -107,34 +98,30 @@ def test_getElement(lstbooks, books):
     assert book == books[4]
 
 
-
-
-def test_removeFirst (lstbooks, books):
+def test_removeFirst(lstbooks, books):
     assert lt.size(lstbooks) == 5
     lt.removeFirst(lstbooks)
     assert lt.size(lstbooks) == 4
     book = lt.getElement(lstbooks, 1)
-    assert book  == books[1]
+    assert book == books[1]
 
 
-
-def test_removeLast (lstbooks, books):
+def test_removeLast(lstbooks, books):
     assert lt.size(lstbooks) == 5
     lt.removeLast(lstbooks)
     assert lt.size(lstbooks) == 4
     book = lt.getElement(lstbooks, 4)
-    assert book  == books[3]
+    assert book == books[3]
 
 
-
-def test_insertElement (lst, books):
+def test_insertElement(lst, books):
     assert lt.isEmpty(lst) is True
     assert lt.size(lst) == 0
-    lt.insertElement (lst, books[0], 1)
+    lt.insertElement(lst, books[0], 1)
     assert lt.size(lst) == 1
-    lt.insertElement (lst, books[1], 2)
+    lt.insertElement(lst, books[1], 2)
     assert lt.size(lst) == 2
-    lt.insertElement (lst, books[2], 1)
+    lt.insertElement(lst, books[2], 1)
     assert lt.size(lst) == 3
     book = lt.getElement(lst, 1)
     assert book == books[2]
@@ -142,36 +129,33 @@ def test_insertElement (lst, books):
     assert book == books[0]
 
 
-
-def test_isPresent (lstbooks, books):
-    book = {'book_id':'10', 'book_title':'Title 10', 'author':'author 10'}
-    assert lt.isPresent (lstbooks, books[2]) > 0
-    assert lt.isPresent (lstbooks, book) == 0
-    
+def test_isPresent(lstbooks, books):
+    book = {'book_id': '10', 'book_title': 'Title 10', 'author': 'author 10'}
+    assert lt.isPresent(lstbooks, books[2]) > 0
+    assert lt.isPresent(lstbooks, book) == 0
 
 
-def test_deleteElement (lstbooks, books):
-    pos = lt.isPresent (lstbooks, books[2])
+def test_deleteElement(lstbooks, books):
+    pos = lt.isPresent(lstbooks, books[2])
     assert pos > 0
     book = lt.getElement(lstbooks, pos)
     assert book == books[2]
-    lt.deleteElement (lstbooks, pos)
+    lt.deleteElement(lstbooks, pos)
     assert lt.size(lstbooks) == 4
     book = lt.getElement(lstbooks, pos)
     assert book == books[3]
 
 
-
-def test_changeInfo (lstbooks):
-    book10 = {'book_id':'10', 'book_title':'Title 10', 'author':'author 10'}
-    lt.changeInfo (lstbooks, 1, book10)
+def test_changeInfo(lstbooks):
+    book10 = {'book_id': '10', 'book_title': 'Title 10', 'author': 'author 10'}
+    lt.changeInfo(lstbooks, 1, book10)
     book = lt.getElement(lstbooks, 1)
     assert book10 == book
 
 
-def test_exchange (lstbooks, books):
+def test_exchange(lstbooks, books):
     book1 = lt.getElement(lstbooks, 1)
     book5 = lt.getElement(lstbooks, 5)
-    lt.exchange (lstbooks, 1, 5)
+    lt.exchange(lstbooks, 1, 5)
     assert lt.getElement(lstbooks, 1) == book5
     assert lt.getElement(lstbooks, 5) == book1

@@ -19,16 +19,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
-
 import pytest
 import config
 from Sorting import mergesort as sort
 from DataStructures import listiterator as it
 from ADT import list as slt
 
-#list_type = 'ARRAY_LIST'
+# list_type = 'ARRAY_LIST'
 list_type = 'SINGLE_LINKED'
-
 
 book1 = {'book_id': '1', 'book_title': 'Title 1', 'author': 'author 1'}
 book2 = {'book_id': '2', 'book_title': 'Title 2', 'author': 'author 2'}
@@ -48,6 +46,7 @@ book14 = {'book_id': '10', 'book_title': 'Title 14', 'author': 'author 14'}
 lista_ordenada_correcta = [
     book1, book2, book3, book4, book5, book6, book7, book8, book9, book10
 ]
+
 
 def less(element1, element2):
     if int(element1['book_id']) < int(element2['book_id']):
@@ -223,6 +222,7 @@ def test_ManyElements():
     assert slt.removeFirst(lst) == book10
     assert slt.removeFirst(lst) == book14
 
+
 def test_agregarYquitar():
     """
     Prueba que al hacer varios ordnamientos el orden debe mantenerse asi se cambien los elementos
@@ -239,16 +239,11 @@ def test_agregarYquitar():
     slt.addFirst(lst, book3)
     slt.addFirst(lst, book2)
     slt.addFirst(lst, book1)
-    probarOrden(lst) #Prueba que al inicio la lista esté en orden
+    probarOrden(lst)  # Prueba que al inicio la lista esté en orden
     slt.addFirst(lst, slt.removeLast(lst))
     slt.addLast(lst, slt.removeFirst(lst))
     slt.addFirst(lst, slt.removeLast(lst))
     with pytest.raises(Exception):
         probarOrden(lst)
-    sort.mergesort(lst,less)
+    sort.mergesort(lst, less)
     probarOrden(lst)
-    
-    
-
-    
-    

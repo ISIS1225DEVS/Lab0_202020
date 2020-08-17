@@ -18,9 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
-
-import DataStructures.listnode as node 
-
+import DataStructures.listnode as node
 
 """
   Este módulo implementa un iterador para recorrer los elementos de una lista encadenada
@@ -35,9 +33,8 @@ def newIterator(lst):
     Returns:
         Un iterador para la lista
     """
-    iterator = {'iterable_lst':lst,'current_node':None, 'type':'LINKED_ITERATOR'}
+    iterator = {'iterable_lst': lst, 'current_node': None, 'type': 'LINKED_ITERATOR'}
     return iterator
-
 
 
 def hasNext(iterator):
@@ -51,8 +48,8 @@ def hasNext(iterator):
     """
     if iterator['iterable_lst']['first'] == None:
         return False
-    elif (iterator['iterable_lst']['first']!= None) and (iterator['current_node']) == None:
-       return True
+    elif (iterator['iterable_lst']['first'] != None) and (iterator['current_node']) == None:
+        return True
     elif iterator['current_node']['next'] == None:
         return False
     elif iterator['current_node']['next'] != None:
@@ -67,9 +64,9 @@ def next(iterator):
     Returns:
         El siguiente elemento al último retornado por el iterador
     """
-    if (iterator['iterable_lst']['first']!= None) and (iterator['current_node'] == None):
+    if (iterator['iterable_lst']['first'] != None) and (iterator['current_node'] == None):
         iterator['current_node'] = iterator['iterable_lst']['first']
     elif iterator['current_node']['next'] != None:
-        iterator['current_node'] = iterator['current_node']['next'] 
-    
-    return iterator['current_node'] ['info']
+        iterator['current_node'] = iterator['current_node']['next']
+
+    return iterator['current_node']['info']

@@ -19,16 +19,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
-
 import pytest
 import config
 from Sorting import shellsort as sort
 from DataStructures import listiterator as it
 from ADT import list as slt
 
-#list_type = 'ARRAY_LIST'
+# list_type = 'ARRAY_LIST'
 list_type = 'SINGLE_LINKED'
-
 
 book1 = {'book_id': '1', 'book_title': 'Title 1', 'author': 'author 1'}
 book2 = {'book_id': '2', 'book_title': 'Title 2', 'author': 'author 2'}
@@ -219,10 +217,11 @@ def test_ManyElements():
     assert slt.removeFirst(lst) == book11
     assert slt.removeFirst(lst) == book8
     assert slt.removeFirst(lst) == book12
-    assert slt.removeFirst(lst) == book13 
+    assert slt.removeFirst(lst) == book13
     assert slt.removeFirst(lst) == book9
     assert slt.removeFirst(lst) == book10
     assert slt.removeFirst(lst) == book14
+
 
 def test_agregarYquitar():
     """
@@ -240,16 +239,11 @@ def test_agregarYquitar():
     slt.addFirst(lst, book3)
     slt.addFirst(lst, book2)
     slt.addFirst(lst, book1)
-    probarOrden(lst) #Prueba que al inicio la lista esté en orden
+    probarOrden(lst)  # Prueba que al inicio la lista esté en orden
     slt.addFirst(lst, slt.removeLast(lst))
     slt.addLast(lst, slt.removeFirst(lst))
     slt.addFirst(lst, slt.removeLast(lst))
     with pytest.raises(Exception):
         probarOrden(lst)
-    sort.shellSort(lst,less)
+    sort.shellSort(lst, less)
     probarOrden(lst)
-    
-    
-
-    
-    

@@ -1,4 +1,21 @@
-# Proyecto base para los desarrollar los laboratorios
+# Laboratorio #1
+
+Realizado por el equipo 4 de la sección 2 del curso 
+Estructuras de Datos y Algoritmos de la Universidad de los Andes.
+
+## Integrantes del equipo
+
+- Andrés Molina
+  - Correo: a.molinam@uniandes.edu.co
+  - Código: 201923434
+- María Alejandra Vargas
+  - Correo: ma.vargas73@uniandes.edu.co
+  - Código: XXXXXXXXX
+- Juan Alegría
+  - Correo: j.alegria@uniandes.edu.co
+  - Código: 202011282
+
+## Estructura del proyecto
 
 *	ADT: archivos Python con la definición de los Tipos Abstractos de Datos.
 *	App: aplicación Python cliente que usa las ADTs y ordenamientos para dar solución a laboratorios y retos.

@@ -21,13 +21,14 @@
 import config
 from Utils import error as error
 from DataStructures import arraylist as alt
-from DataStructures import singlelinkedlist as slt 
+from DataStructures import singlelinkedlist as slt
 
 """
   Este módulo selecciona la estructura de datos deseada para ejectuar una operación del TAD Lista.
 """
 
-def newList (datastructure='SINGLE_LINKED', cmpfunction=None):
+
+def newList(datastructure='SINGLE_LINKED', cmpfunction=None):
     """Crea una lista vacia.
 
     Args:
@@ -44,8 +45,7 @@ def newList (datastructure='SINGLE_LINKED', cmpfunction=None):
             lt = slt.newList(cmpfunction)
         return lt
     except Exception as exp:
-        error.reraise (exp, 'list->newList: ')
-
+        error.reraise(exp, 'list->newList: ')
 
 
 def addFirst(lst, element):
@@ -65,14 +65,12 @@ def addFirst(lst, element):
         Exception
     """
     try:
-        if (lst['type']=='ARRAY_LIST'):
-            alt.addFirst (lst, element)
+        if (lst['type'] == 'ARRAY_LIST'):
+            alt.addFirst(lst, element)
         else:
-            slt.addFirst (lst, element)
+            slt.addFirst(lst, element)
     except Exception as exp:
-        error.reraise (exp, 'List->addFirst: ')
-
-
+        error.reraise(exp, 'List->addFirst: ')
 
 
 def addLast(lst, element):
@@ -89,17 +87,15 @@ def addLast(lst, element):
         Exception
     """
     try:
-        if (lst['type']=='ARRAY_LIST'):
-            alt.addLast (lst, element)
+        if (lst['type'] == 'ARRAY_LIST'):
+            alt.addLast(lst, element)
         else:
-            slt.addLast (lst, element)
+            slt.addLast(lst, element)
     except Exception as exp:
-        error.reraise (exp, 'List->addLast: ')
+        error.reraise(exp, 'List->addLast: ')
 
 
-
-
-def isEmpty (lst):
+def isEmpty(lst):
     """ Indica si la lista está vacía
 
     Args: 
@@ -109,15 +105,12 @@ def isEmpty (lst):
         Exception
     """
     try:
-        if (lst['type']=='ARRAY_LIST'):
+        if (lst['type'] == 'ARRAY_LIST'):
             return alt.isEmpty(lst)
         else:
             return slt.isEmpty(lst)
     except Exception as exp:
-        error.reraise (exp, 'List->isEmpty: ')
-
-
-
+        error.reraise(exp, 'List->isEmpty: ')
 
 
 def size(lst):
@@ -130,17 +123,15 @@ def size(lst):
         Exception
     """
     try:
-        if (lst['type']=='ARRAY_LIST'):
+        if (lst['type'] == 'ARRAY_LIST'):
             return alt.size(lst)
         else:
             return slt.size(lst)
     except Exception as exp:
-        error.reraise (exp, 'List->size: ')
+        error.reraise(exp, 'List->size: ')
 
 
-
-
-def firstElement (lst):
+def firstElement(lst):
     """ Retorna el primer elemento de una lista no vacía. No se elimina el elemento.
 
     Args: 
@@ -150,16 +141,15 @@ def firstElement (lst):
         Exception
     """
     try:
-        if (lst['type']=='ARRAY_LIST'):
-            return alt.firstElement (lst)
+        if (lst['type'] == 'ARRAY_LIST'):
+            return alt.firstElement(lst)
         else:
-            return slt.firstElement (lst)
+            return slt.firstElement(lst)
     except Exception as exp:
-        error.reraise (exp, 'List->firstElement: ')
+        error.reraise(exp, 'List->firstElement: ')
 
 
-
-def lastElement (lst):
+def lastElement(lst):
     """ Retorna el último elemento de una  lista no vacia.  No se elimina el elemento.
 
     Args:
@@ -169,17 +159,15 @@ def lastElement (lst):
         Exception
     """
     try:
-        if (lst['type']=='ARRAY_LIST'):
+        if (lst['type'] == 'ARRAY_LIST'):
             return alt.lastElement(lst)
         else:
             return slt.lastElement(lst)
     except Exception as exp:
-        error.reraise (exp, 'List->lastElement: ')
+        error.reraise(exp, 'List->lastElement: ')
 
 
-
-
-def getElement (lst, pos):
+def getElement(lst, pos):
     """ Retorna el elemento en la posición pos de la lista.
 
     Se recorre la lista hasta el elemento pos, el cual  debe ser mayor que cero y menor o igual al tamaño de la lista.
@@ -193,17 +181,15 @@ def getElement (lst, pos):
         Exception
     """
     try:
-        if (lst['type']=='ARRAY_LIST'):
-            return alt.getElement (lst, pos) 
+        if (lst['type'] == 'ARRAY_LIST'):
+            return alt.getElement(lst, pos)
         else:
-            return slt.getElement (lst, pos) 
+            return slt.getElement(lst, pos)
     except Exception as exp:
-        error.reraise (exp, 'List->getElement: ')
+        error.reraise(exp, 'List->getElement: ')
 
 
-
-
-def deleteElement (lst, pos):
+def deleteElement(lst, pos):
     """ Elimina el elemento en la posición pos de la lista.
     
     Elimina el elemento que se encuentra en la posición pos de la lista.  Pos debe ser mayor que cero y menor 
@@ -217,17 +203,15 @@ def deleteElement (lst, pos):
         Exception
     """
     try:
-        if (lst['type']=='ARRAY_LIST'):
-            alt.deleteElement(lst, pos) 
+        if (lst['type'] == 'ARRAY_LIST'):
+            alt.deleteElement(lst, pos)
         else:
-            slt.deleteElement(lst, pos) 
+            slt.deleteElement(lst, pos)
     except Exception as exp:
-        error.reraise (exp, 'List->deleteElement: ')
+        error.reraise(exp, 'List->deleteElement: ')
 
 
-
-
-def removeFirst (lst):
+def removeFirst(lst):
     """ Remueve el primer elemento de la lista. 
     
     Elimina y retorna el primer elemento de la lista.  El tamaño de la lista se decrementa en uno.  Si la lista
@@ -240,17 +224,15 @@ def removeFirst (lst):
         Exception
     """
     try:
-        if (lst['type']=='ARRAY_LIST'):
-            return alt.removeFirst (lst)
+        if (lst['type'] == 'ARRAY_LIST'):
+            return alt.removeFirst(lst)
         else:
-            return slt.removeFirst (lst)
+            return slt.removeFirst(lst)
     except Exception as exp:
-        error.reraise (exp, 'List->removeFirst: ')
+        error.reraise(exp, 'List->removeFirst: ')
 
 
-
-
-def removeLast (lst):
+def removeLast(lst):
     """ Remueve el último elemento de la lista.
     
     Elimina el último elemento de la lista  y lo retorna en caso de existir. El tamaño de la lista se decrementa en 1. 
@@ -263,17 +245,15 @@ def removeLast (lst):
         Exception
     """
     try:
-        if (lst['type']=='ARRAY_LIST'):
-            return alt.removeLast (lst)
+        if (lst['type'] == 'ARRAY_LIST'):
+            return alt.removeLast(lst)
         else:
-            return slt.removeLast (lst)
+            return slt.removeLast(lst)
     except Exception as exp:
-        error.reraise (exp, 'List->removeLast: ')
+        error.reraise(exp, 'List->removeLast: ')
 
 
-
-
-def insertElement (lst, element, pos):
+def insertElement(lst, element, pos):
     """ Inserta el elemento element en la posición pos de la lista. 
     
     Inserta el elemento en la posición pos de la lista. La lista puede ser vacía.  Se incrementa en 1 el tamaño de la lista.
@@ -287,17 +267,15 @@ def insertElement (lst, element, pos):
         Exception
     """
     try:
-        if (lst['type']=='ARRAY_LIST'):
-            alt.insertElement (lst, element, pos)
+        if (lst['type'] == 'ARRAY_LIST'):
+            alt.insertElement(lst, element, pos)
         else:
-            slt.insertElement (lst, element, pos)
+            slt.insertElement(lst, element, pos)
     except Exception as exp:
-        error.reraise (exp, 'List->insertElement: ')
+        error.reraise(exp, 'List->insertElement: ')
 
 
-
-
-def isPresent (lst, element):
+def isPresent(lst, element):
     """ Informa si el elemento element esta presente en la lista. 
     
     Informa si un elemento está en la lista.  Si esta presente, retorna la posición en la que se encuentra 
@@ -312,17 +290,15 @@ def isPresent (lst, element):
         Exception
     """
     try:
-        if (lst['type']=='ARRAY_LIST'):
-            return alt.isPresent (lst, element)
+        if (lst['type'] == 'ARRAY_LIST'):
+            return alt.isPresent(lst, element)
         else:
-            return slt.isPresent (lst, element)
+            return slt.isPresent(lst, element)
     except Exception as exp:
-        error.reraise (exp, 'List->isPresent: ')
+        error.reraise(exp, 'List->isPresent: ')
 
 
-
-
-def exchange (lst, pos1, pos2):
+def exchange(lst, pos1, pos2):
     """ Intercambia la informacion en las posiciones pos1 y pos2 de la lista.
 
     Args:
@@ -334,17 +310,15 @@ def exchange (lst, pos1, pos2):
         Exception
     """
     try:
-        if (lst['type']=='ARRAY_LIST'):
-            alt.exchange (lst, pos1, pos2)
+        if (lst['type'] == 'ARRAY_LIST'):
+            alt.exchange(lst, pos1, pos2)
         else:
-            slt.exchange (lst, pos1, pos2)
+            slt.exchange(lst, pos1, pos2)
     except Exception as exp:
-        error.reraise (exp, 'List->exchange: ')
+        error.reraise(exp, 'List->exchange: ')
 
 
-
-
-def changeInfo (lst, pos, element):
+def changeInfo(lst, pos, element):
     """ Cambia la informacion contenida en el nodo de la lista que se encuentra en la posicion pos.
     
     Args:   
@@ -356,17 +330,15 @@ def changeInfo (lst, pos, element):
         Exception
     """
     try:
-        if (lst['type']=='ARRAY_LIST'):
-            alt.changeInfo (lst, pos, element)
+        if (lst['type'] == 'ARRAY_LIST'):
+            alt.changeInfo(lst, pos, element)
         else:
-            slt.changeInfo (lst, pos, element)
+            slt.changeInfo(lst, pos, element)
     except Exception as exp:
-        error.reraise (exp, 'List->changeInfo: ')
+        error.reraise(exp, 'List->changeInfo: ')
 
 
-
-
-def subList (lst, pos, numelem):
+def subList(lst, pos, numelem):
     """ Retorna una sublista de la lista lst.
     
     Se retorna una lista que contiene los elementos a partir de la posicion pos, con una longitud de numelem elementos.  
@@ -381,12 +353,9 @@ def subList (lst, pos, numelem):
         Exception
     """
     try:
-        if (lst['type']=='ARRAY_LIST'):
-            return alt.subList (lst, pos, numelem)
+        if (lst['type'] == 'ARRAY_LIST'):
+            return alt.subList(lst, pos, numelem)
         else:
-            return slt.subList (lst, pos, numelem)
+            return slt.subList(lst, pos, numelem)
     except Exception as exp:
-        error.reraise (exp, 'List->subList: ')
-
-
-
+        error.reraise(exp, 'List->subList: ')

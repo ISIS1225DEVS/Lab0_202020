@@ -22,15 +22,17 @@
 import config as cf
 from ADT import list as lt
 
-def selectionSort (lst, lessfunction): 
-    size =  lt.size(lst) 
+
+def selectionSort(lst, lessfunction):
+    size = lt.size(lst)
     pos1 = 1
     while pos1 < size:
-        minimum = pos1              # minimun tiene el menor elemento conocido hasta ese momento
+        minimum = pos1  # minimun tiene el menor elemento conocido hasta ese momento
         pos2 = pos1 + 1
         while (pos2 <= size):
-            if (lessfunction (lt.getElement(lst, pos2),lt.getElement(lst, minimum))): 
-                minimum = pos2      # minimum se actualiza con la posición del nuevo elemento más pequeño
+            if (lessfunction(lt.getElement(lst, pos2), lt.getElement(lst, minimum))):
+                minimum = pos2  # minimum se actualiza con la posición del nuevo elemento más pequeño
             pos2 += 1
-        lt.exchange (lst, pos1, minimum)  # se intercambia el elemento más pequeño hasta ese punto con el elemento en pos1
+        lt.exchange(lst, pos1,
+                    minimum)  # se intercambia el elemento más pequeño hasta ese punto con el elemento en pos1
         pos1 += 1
