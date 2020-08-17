@@ -107,23 +107,24 @@ def encontrar_ID(nombre,lst):
     lista = []
     listas = []
     loadCSVFile("Data/MoviesCastingRaw-large.csv", lista) 
-    for i in lista:
-        if (lst[i]["director_name"]).lower() == nombre.lower():
-            listas.append(lst[i]["id"])
+    for i in range(0,len(lista)):        
+        if lista[i]["director_name"].lower() == nombre.lower():
+            listas.append(lista[i]["id"])
     return lista
 
-def countElementsByCriteria(criteria, lst):
+def countElementsByCriteria(criteria,lst):
     """
     Retorna la cantidad de elementos que cumplen con un criterio para una columna dada
     """
-    lista= encontrar_ID(criteria,lst)
+    lista = encontrar_ID(criteria,lst)
     pr =[]
-    for i in lista:
-        if (lista[i]["id"]) == lst[i]["id"]: #Comparación director
-            if lista[i]["vote_average"]>= 6:
+    for i in range(0,len(lista)):
+        if lst[i]["\ufeffid"] in lista: #Comparación director
+            if lst[i]["vote_average"]>= 6:
                 pr.append(lst[i]["vote_average"])
                 contador += 1   #Número de películas buenas o con votación positiva
-                promedio = sum(pr)/contador                  
+                promedio = sum(pr)/contador       
+                print("1")           
 
     return (contador,promedio)
 
@@ -141,7 +142,7 @@ def main():
         inputs = input('Seleccione una opción para continuar\n')  # leer opción ingresada
         if len(inputs) > 0:
             if int(inputs[0]) == 1:  # opcion 1
-                loadCSVFile("Data/MoviesCastingRaw-large.csv", lista)  # llamar funcion cargar datos
+                loadCSVFile("Data/MoviesDetailsCleaned-large.csv", lista)  # llamar funcion cargar datos
                 print("Datos cargados, " + str(len(lista)) + " elementos cargados")
             elif int(inputs[0]) == 2:  # opcion 2
                 if len(lista) == 0:  # obtener la longitud de la lista
