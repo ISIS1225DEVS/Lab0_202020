@@ -25,7 +25,9 @@
 """
   Este módulo es una aplicación básica con un menú de opciones para cargar datos, contar elementos, y hacer búsquedas sobre una lista.
 """
-
+#Comentario j-arroyo
+#ng-rojas
+#Camilo-Morillo
 import config as cf
 import sys
 import csv
@@ -33,7 +35,7 @@ from time import process_time
 
 def loadCSVFile (file, lst, sep=";"):
     """
-    Carga un archivo csv a una lista
+    Carga un archivo csv a una lista 
     Args:
         file 
             Archivo de texto del cual se cargaran los datos requeridos.
