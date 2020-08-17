@@ -104,7 +104,7 @@ def countElementsFilteredByColumn(criteria, column, lst):
         print("Tiempo de ejecución ", t1_stop - t1_start, " segundos")
     return counter
 
-def encontrarBP(name,lst):
+def encontrarBP(lst):
     loadCSVFile("Data/MoviesCastingRaw-large.csv", lst)
     contador = 0
     lst1 = []
@@ -114,34 +114,39 @@ def encontrarBP(name,lst):
             contador +=1
     return contador
 
-def ID(name,lst):
+def ID(criteria,lst):
     loadCSVFile("Data/MoviesCastingRaw-large.csv", lst)
     numofmovies = []
     for element in lst:
             if criteria.lower() in element['director_name'].lower():  # filtrar por nombre
-                numofmovies.append(element)
+                numofmovies.append(element["id"]) 
+    return numofmovies
 
 
 def countElementsByCriteria(criteria, column,lst):
     """
     Retorna la cantidad de elementos que cumplen con un criterio para una columna dada
     """
+    find = encontrarBP(lst)
+    find2 = ID(criteria,lst)
+    findprom = []
+    count = 0
     if len(lst) == 0:
         print("La lista esta vacía")
+
     else:
         t2_start = process_time()  # tiempo inicial
-        counter = ""  # Cantidad de repeticiones  
-        for i in range(0,len(lst))
-            for j in range (0,len(column)-1)
-                if 
+        for i in range(0,len(lst)):
+            if find2 in lst:
+                if lst[i]["vote_average"]>=6:
+                    findprom.append(lst[i]["vote_average"])
+                    count +=1
+                    prom = sum(findprom)/ count
 
-
-    
-
-        
         t2_stop = process_time()  # tiempo final
         print("Tiempo de ejecución ", t2_stop - t2_start, " segundos")
-    return counter
+    return (find,prom)
+
 
 
 def main():
