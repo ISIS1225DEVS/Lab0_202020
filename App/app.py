@@ -69,9 +69,9 @@ def printMenu():
     """
     print("\nBienvenido")
     print("1- Cargar Datos")
-    print("2- Contar los elementos de la Lista")
+    print("2- Encontrar la longitud de la lista")
     print("3- Contar elementos filtrados por palabra clave")
-    print("4- Consultar elementos a partir de dos listas")
+    print("4- Encontrar películas buenas de un director en específico")
     print("0- Salir")
 
 def countElementsFilteredByColumn(criteria, column, lst):
@@ -101,23 +101,33 @@ def countElementsFilteredByColumn(criteria, column, lst):
         print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
     return counter
 
-def countElementsByCriteria(director, lst1, lst2):
+def countElementsByCriteria(criteria, lst1,lst2):
     """
     Retorna la cantidad de elementos que cumplen con un criterio para una columna dada
     """
-    
-
-    return 0
+    listiña=[]
+    counter=0
+    promedio=0
+    for pelicula in lst1:
+        if pelicula["director_name"]==criteria:
+            listiña.append(pelicula)
+    for pelicula in lst2:
+        for i in listiña:
+                if float(pelicula["vote_average"])>=6 and pelicula["id"]==i["id"]:
+                    counter+=1
+                    promedio+=float(pelicula["vote_average"])
+    promedio/=counter
+    return (counter,promedio)
 
 
 def main():
     """
     Método principal del programa, se encarga de manejar todos los metodos adicionales creados
-
     Instancia una lista vacia en la cual se guardarán los datos cargados desde el archivo
     Args: None
-    Return: None 
+    Return: None h
     """
+
     lista_casting = [] 
     lista_details = []
     while True:
@@ -135,17 +145,18 @@ def main():
             elif int(inputs[0])==2: #opcion 2
                 if (len(lista_casting)==0) or (len(lista_details)==0): #obtener la longitud de la lista
                     print("Alguna de las listas esta vacia")    
-                else: print("La lista con el casting tiene "+str(len(lista_casting))+" elementos y la lista con los detalles tiene" +str(len(lista_details))+" elementos" )
-                
+                else: print("La lista con el casting tiene "+str(len(lista_casting))+" elementos y la lista con los detalles tiene " +str(len(lista_details))+" elementos" )
+
             elif int(inputs[0])==3: #opcion 3
                 criteria =input('Ingrese el criterio de búsqueda\n')
-                column =input('Ingrese la columna en la que quiere buscar\n')
-                counter=countElementsFilteredByColumn(criteria, column, lista_casting) #filtrar una columna por criterio  
+                column =input('Ingrese la columna en la que quiere buscar de la lista de los detalles de las películas\n')
+                counter=countElementsFilteredByColumn(criteria, column, lista_details) #filtrar una columna por criterio  
                 print("Coinciden ",counter," elementos con el crtierio: ", criteria  )
+
             elif int(inputs[0])==4: #opcion 4
-                criteria =input('Ingrese el criterio de búsqueda\n')
-                counter=countElementsByCriteria(criteria,0,lista_casting)
-                print("Coinciden ",counter," elementos con el crtierio: '", criteria ,"' (en construcción ...)")
+                criteria =input('Ingrese el nombre del director\n')
+                counter,promedio=countElementsByCriteria(criteria,lista_casting,lista_details)
+                print ("Hay "+str(counter)+" películas buenas de ese director. Y "+str(promedio)+" es su promedio de la votacion.")  
             elif int(inputs[0])==0: #opcion 0, salir
                 sys.exit(0)
 
