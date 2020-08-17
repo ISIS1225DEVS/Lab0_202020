@@ -27,7 +27,7 @@
 """
 #Comentario j-arroyo
 #ng-rojas
-#Camilo-Morillo
+#Camilo-Morillo.
 import config as cf
 import sys
 import csv
