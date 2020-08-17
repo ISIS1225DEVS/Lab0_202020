@@ -134,7 +134,13 @@ def main():
     Return: None 
     """
     casting = [] #instanciar una lista vacia
+    
+    
+    
     detalles = []
+
+
+    
     while True:
         printMenu() #imprimir el menu de opciones en consola
         inputs =input('Seleccione una opción para continuar\n') #leer opción ingresada
