@@ -25,8 +25,6 @@
 """
   Este módulo es una aplicación básica con un menú de opciones para cargar datos, contar elementos, y hacer búsquedas sobre una lista.
 """
-#Comentario j-arroyo
-#ng-rojas test
 import config as cf
 import sys
 import csv
@@ -44,7 +42,7 @@ def loadCSVFile (file, lst, sep=";"):
             Separador escodigo para diferenciar a los distintos elementos dentro del archivo.
     Try:
         Intenta cargar el archivo CSV a la lista que se le pasa por parametro, si encuentra algun error
-        Borra la lista e informa al usuario
+        Borra la lista e informa al usuario1
     Returns: None   
     """
     del lst[:]
@@ -60,7 +58,6 @@ def loadCSVFile (file, lst, sep=";"):
     except:
         del lst[:]
         print("Se presento un error en la carga del archivo")
-    
     t1_stop = process_time() #tiempo final
     print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
 
@@ -102,13 +99,29 @@ def countElementsFilteredByColumn(criteria, column, lst):
         print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
     return counter
 
-def countElementsByCriteria(criteria, column, lst):
+def countElementsByCriteria(criteria, column, lst, lst_c):
     """
     Retorna la cantidad de elementos que cumplen con un criterio para una columna dada
     """
-    return 0
-
-
+    if len(lst)==0:
+        print("La lista esta vacía")  
+    else:
+        t1_start = process_time() #tiempo inicial
+        pelis = [] #Cantidad de repeticiones
+        counter = 0
+        suma = 0
+        for element in lst_c:
+            if criteria.lower() in element[column].lower(): #filtrar por palabra clave 
+                pelis += [element[id]]
+        for elements in pelis:
+            if lst[elements][vote_average] >= 6:
+                counter += 1
+                suma += lst[elements][vote_average]
+        t1_stop = process_time() #tiempo final
+        promedio = suma/counter
+        print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
+    
+    return counter, promedio
 def main():
     """
     Método principal del programa, se encarga de manejar todos los metodos adicionales creados
@@ -123,7 +136,8 @@ def main():
         inputs =input('Seleccione una opción para continuar\n') #leer opción ingresada
         if len(inputs)>0:
             if int(inputs[0])==1: #opcion 1
-                loadCSVFile("Data/test.csv", lista) #llamar funcion cargar datos
+                archivo = input("Escriba el archivo:")
+                loadCSVFile("Data/"+archivo+".csv", lista) #llamar funcion cargar datos
                 print("Datos cargados, "+str(len(lista))+" elementos cargados")
             elif int(inputs[0])==2: #opcion 2
                 if len(lista)==0: #obtener la longitud de la lista
@@ -131,11 +145,14 @@ def main():
                 else: print("La lista tiene "+str(len(lista))+" elementos")
             elif int(inputs[0])==3: #opcion 3
                 criteria =input('Ingrese el criterio de búsqueda\n')
-                counter=countElementsFilteredByColumn(criteria, "nombre", lista) #filtrar una columna por criterio  
+                columna =input("Ingrese la columna\n")
+                counter=countElementsFilteredByColumn(criteria, columna, lista) #filtrar una columna por criterio  
                 print("Coinciden ",counter," elementos con el crtierio: ", criteria  )
             elif int(inputs[0])==4: #opcion 4
                 criteria =input('Ingrese el criterio de búsqueda\n')
-                counter=countElementsByCriteria(criteria,0,lista)
+                name = input("Ingrese el nombre del archivo casting")
+                casting = loadCSVFile("Data/"+name+".csv", lista)
+                counter=countElementsByCriteria(criteria,"vote_average",lista,casting)
                 print("Coinciden ",counter," elementos con el crtierio: '", criteria ,"' (en construcción ...)")
             elif int(inputs[0])==0: #opcion 0, salir
                 sys.exit(0)
