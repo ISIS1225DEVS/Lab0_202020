@@ -98,23 +98,19 @@ def countElementsFilteredByColumn(criteria, column, lst):
         t1_start = process_time()  # tiempo inicial
         counter = 0  # Cantidad de repeticiones
         for element in lst:
-            if criteria.lower() in element[column].lower() and element.lower() >=6:  # filtrar por palabra clave
+            if criteria.lower() in element[column].lower():  # filtrar por palabra clave
                 counter += 1
         t1_stop = process_time()  # tiempo final
         print("Tiempo de ejecución ", t1_stop - t1_start, " segundos")
     return counter
 
+def encontrar(name,lst)
+    
+
+def promedio()
 
 
-def promedio(lst,column):
-    sum_num = 0
-    for element in lst:
-            
-                
-
-
-
-def countElementsByCriteria(criteria, column, lst):
+def countElementsByCriteria(criteria, column,lst):
     """
     Retorna la cantidad de elementos que cumplen con un criterio para una columna dada
     """
@@ -122,10 +118,15 @@ def countElementsByCriteria(criteria, column, lst):
         print("La lista esta vacía")
     else:
         t2_start = process_time()  # tiempo inicial
-        counter = 0  # Cantidad de repeticiones  
-        for element in lst:
-            if element.lower() == criteria[column].lower(): # filtrar por cantidad de elementos
-                counter += 1
+        counter = ""  # Cantidad de repeticiones  
+        for i in range(0,len(lst))
+            for j in range (0,len(lst)-1)
+                if 
+
+
+    
+
+        
         t2_stop = process_time()  # tiempo final
         print("Tiempo de ejecución ", t2_stop - t2_start, " segundos")
     return counter
@@ -145,9 +146,9 @@ def main():
         inputs = input('Seleccione una opción para continuar\n')  # leer opción ingresada
         if len(inputs) > 0:
             if int(inputs[0]) == 1:  # opcion 1
-                loadCSVFile("Data/test.csv", lista)  # llamar funcion cargar datos
+                loadCSVFile("Data/MoviesDetailsCleaned-large.csv", lista)  # llamar funcion cargar datos
                 print("Datos cargados, " + str(len(lista)) + " elementos cargados")
-            elif int(inputs[0]) == 2:  # opcion 2
+            elif int(inputs[0]) == 2:  # opcion 2   
                 if len(lista) == 0:  # obtener la longitud de la lista
                     print("La lista esta vacía")
                 else:
