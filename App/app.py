@@ -31,9 +31,6 @@ import sys
 import csv
 from time import process_time 
 
-listaCalif = list()
-listaCasting = list()
-
 def loadCSVFile (file, lst, sep=";"):
     """
     Carga un archivo csv a una lista
@@ -104,42 +101,32 @@ def countElementsFilteredByColumn(criteria, column, lst):
         print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
     return counter
 
-def countElementsByCriteria(criteria, column, lst):
+def countElementsByCriteria(criteria, column, lst1, lst2):
     """
-    Retorna la cantidad de elementos que cumplen con un criterio para una columna dada
+    Retorna el número de peliculas buenas para un director y el promedio de votación
     """
     t1_start = process_time() #tiempo inicial
-    listaMovies = []
-    count = 0
-    prom = 0.0
-    actual = ""
+    idsByDirector = [] #inicializar lista
+    for ids in range(len(lst2)):
+        if lst1[ids]["director_name"].lower() == criteria.lower(): #filtrar por director
+            idsByDirector.append(ids) #agregar ids filtrado por director a lista
     
-    loadCSVFile ("./Data/MoviesCastingRaw-small.csv", listaCasting, sep=";")
-    loadCSVFile ("./Data/SmallMoviesDetailsCleaned.csv", listaCalif, sep=";")
-
-
-    for casting in listaCasting:
-        if casting["director_name"] == criteria:
-            listaMovies.append(casting["id"])
-
-    if len(listaMovies) > 0:
-        actual = listaMovies[count]
-
-    for movie in listaCalif:
+    sumVoteAverage = 0
+    lenghtSumVoteAverage = 0
+    for ids in idsByDirector:
+        if float(lst2[ids][column]) >= 6: #filtrar por puntaja mayor o igual a 6
+            sumVoteAverage += float(lst2[ids][column]) #sumar votaciones que cumplen condición
+            lenghtSumVoteAverage += 1 #sumar número de votaciones que cumple con condición
+    
+    if lenghtSumVoteAverage != 0:
+        averageVoteFiltered = sumVoteAverage/lenghtSumVoteAverage #calcular promedio de votaciones exacto
+        averageVoteFilteredRounded = round(averageVoteFiltered, 3) #calcular promedio de votaciones redondeado a 3 decimales
+    else:
+        return [0,lenghtSumVoteAverage]
         
-        if movie["id"] == actual and float(movie["vote_average"]) >= 6:
-            prom = prom + float(movie["vote_average"])
-            count = count + 1
-            if len(listaMovies) > count:
-                actual = listaMovies[count]
-            else:
-                break            
     t1_stop = process_time() #tiempo final
-     
-    print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
-    return count,prom/count
-
-
+    print("Tiempo de ejecución",t1_stop-t1_start,"segundos") #tiempo de ejecución
+    return [lenghtSumVoteAverage, averageVoteFilteredRounded]
 
 def main():
     """
@@ -149,26 +136,29 @@ def main():
     Args: None
     Return: None 
     """
-    lista = [] #instanciar una lista vacia
+    lst1 = [] #instanciar una lista vacia
+    lst2 = [] #instanciar una lista vacia
     while True:
         printMenu() #imprimir el menu de opciones en consola
         inputs =input('Seleccione una opción para continuar\n') #leer opción ingresada
         if len(inputs)>0:
             if int(inputs[0])==1: #opcion 1
-                loadCSVFile("Data/test.csv", lista) #llamar funcion cargar datos
-                print("Datos cargados, "+str(len(lista))+" elementos cargados")
+                loadCSVFile("Data/MoviesCastingRaw-small.csv", lst1) #llamar funcion cargar datos
+                loadCSVFile("Data/SmallMoviesDetailsCleaned.csv", lst2) #llamar funcion cargar datos
+                print("Datos cargados, "+str(len(lst1))+" elementos cargados")
+                print("Datos cargados, "+str(len(lst2))+" elementos cargados")
             elif int(inputs[0])==2: #opcion 2
-                if len(lista)==0: #obtener la longitud de la lista
+                if len(lst1)==0: #obtener la longitud de la lista
                     print("La lista esta vacía")    
-                else: print("La lista tiene "+str(len(lista))+" elementos")
+                else: print("La lista tiene "+str(len(lst1))+" elementos")
             elif int(inputs[0])==3: #opcion 3
                 criteria =input('Ingrese el criterio de búsqueda\n')
-                counter=countElementsFilteredByColumn(criteria, "nombre", lista) #filtrar una columna por criterio  
+                counter=countElementsFilteredByColumn(criteria, "nombre", lst1) #filtrar una columna por criterio  
                 print("Coinciden ",counter," elementos con el crtierio: ", criteria  )
             elif int(inputs[0])==4: #opcion 4
                 criteria =input('Ingrese el criterio de búsqueda\n')
-                counter=countElementsByCriteria(criteria,0,lista)
-                print("Coinciden ",counter," elementos con el crtierio: '", criteria ,"' (en construcción ...)")
+                averageVote = countElementsByCriteria(criteria, "vote_average", lst1, lst2)
+                print("Coinciden", averageVote[0],"pelicula(s) buenas para el criterio",criteria,"con un promedio de puntaje de",averageVote[1])
             elif int(inputs[0])==0: #opcion 0, salir
                 sys.exit(0)
 
