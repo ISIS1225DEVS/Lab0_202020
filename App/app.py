@@ -118,7 +118,7 @@ def countElementsByCriteria(criteria, lst_1, lst_2):
             suma+=float(element['vote_average'])
             cont+=1
     t1_stop = process_time()
-    print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
+    print("Tiempo de ejecución es ",t1_stop-t1_start," segundos")
     if cont>1:
         promedio=round(suma/cont,2)
     rta=(cont,promedio)
