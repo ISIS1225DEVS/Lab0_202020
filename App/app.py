@@ -52,7 +52,7 @@ def loadCSVFile (file, lst, sep=";"):
     dialect = csv.excel()
     dialect.delimiter=sep
     try:
-        with open(file, encoding="utf-8-sig") as csvfile:
+        with open(file, encoding="utf-8") as csvfile:
             spamreader = csv.DictReader(csvfile, dialect=dialect)
             for row in spamreader: 
                 lst.append(row)
@@ -123,6 +123,50 @@ def countElementsByCriteria(criteria, lst_1, lst_2):
         promedio=round(suma/cont,2)
     rta=(cont,promedio)
     return rta
-    
+
+def main():
+    """
+    Método principal del programa, se encarga de manejar todos los metodos adicionales creados
+
+    Instancia una lista vacia en la cual se guardarán los datos cargados desde el archivo
+    Args: None
+    Return: None
+    """
+    casting = []
+    detalles = []
+    while True:
+        printMenu() #imprimir el menu de opciones en consola
+        inputs =input('Seleccione una opción para continuar\n') #leer opción ingresada
+        if len(inputs)>0:
+            if int(inputs[0])==1: #opcion 1
+                cast = input("¿Cual es el nombre del archivo con los casting? ")
+                det = input("¿Cual es el nombre del archivo con los detalles? ")
+                loadCSVFile("Data/"+cast, casting) #llamar funcion cargar datos
+                loadCSVFile("Data/"+det, detalles)
+                print("Datos cargados, "+str(len(casting))+" elementos cargados")
+                print("Datos cargados, "+str(len(detalles))+" elementos cargados")
+            elif int(inputs[0])==2: #opcion 2
+                if len(detalles)==0 and len(casting)==0: #obtener la longitud de la lista
+                    print("Las listas esta vacía")    
+                else:
+                    print("La lista del casting tiene "+str(len(casting))+" elementos")
+                    print("La lista con los detalles tiene "+str(len(detalles))+" elementos")
+            elif int(inputs[0])==3: #opcion 3
+                lista =input('¿En que lista desea buscar (casting o detalles)?\n')
+                columna =input('¿En que columna desea buscar?\n')
+                criterio =input('¿Cual es el criterio de busqueda?\n')
+                if lista=='casting':
+                    counter=countElementsFilteredByColumn(criterio, columna, casting)#filtrar una columna por criterio
+                if lista=='detalles':
+                    counter=countElementsFilteredByColumn(criterio, columna, detalles)
+                print("Coinciden ",counter," elementos con el criterio: ", criterio  )
+            elif int(inputs[0])==4: #opcion 4
+                criteria =input('Ingrese el director\n')
+                counter=countElementsByCriteria(criteria,casting,detalles)
+                print("El director",criteria,"tiene",counter[0],"peliculas buenas con promedio",counter[1])
+            elif int(inputs[0])==0: #opcion 0, salir
+                sys.exit(0)
+
+
 if __name__ == "__main__":
     main()
