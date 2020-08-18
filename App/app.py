@@ -149,7 +149,8 @@ def countElementsByCriteria(criteria, column, lst1, lst2):
 
         t1_stop = process_time() #tiempo final
         print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
-    return counter
+    promedio = promedio_votos_peli(id_peliculas_director,lst1)
+    return counter , promedio
 
 
 def main():
@@ -204,7 +205,7 @@ def main():
             elif int(inputs[0])==4: #opcion 4
                 criteria =input('Ingrese el criterio de búsqueda\n')
                 counter=countElementsByCriteria(criteria,12,lista_1,lista_2)
-                print("Coinciden ",counter," elementos con el crtierio: '", criteria)
+                print("Coinciden ",counter[0]," elementos con el crtierio: '", criteria, "\nCon un promedio de votos de: ", counter[1])
             elif int(inputs[0])==0: #opcion 0, salir
                 sys.exit(0)
 
