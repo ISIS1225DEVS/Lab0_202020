@@ -168,7 +168,6 @@ def countElementsByCriteria(criteria, lst1, lst2):
 
     return resultado
 
-
 def main():
     """
     Método principal del programa, se encarga de manejar todos los metodos adicionales creados
