@@ -52,7 +52,7 @@ def loadCSVFile (file, lst, sep=";"):
     dialect = csv.excel()
     dialect.delimiter=sep
     try:
-        with open(file, encoding="utf-8") as csvfile:
+        with open(file, encoding="utf-8-sig") as csvfile:
             spamreader = csv.DictReader(csvfile, dialect=dialect)
             for row in spamreader: 
                 lst.append(row)
@@ -174,10 +174,10 @@ def main():
 
     Instancia una lista vacia en la cual se guardarán los datos cargados desde el archivo
     Args: None
-    Return: None 
+    Return: None
     """
-    lista1= []
-    lista2= [] #instanciar una lista vacia
+    lista1 = []
+    lista2 = []
     while True:
         printMenu() #imprimir el menu de opciones en consola
         inputs =input('Seleccione una opción para continuar\n') #leer opción ingresada
@@ -189,16 +189,16 @@ def main():
                 print("Datos cargados del archivo Detalles, "+str(len(lista2))+" elementos cargados")     
             elif int(inputs[0])==2: #opcion 2
                 if len(lista1)==0 and len(lista2)==0: #obtener la longitud de la lista
-                    print("La lista esta vacía")    
-                else: 
-                    print("La lista del archivo Casting tiene: "+str(len(lista1))+" elementos")
-                    print("La lista del archivo Detalles tiene: "+str(len(lista2))+" elementos")
+                    print("Las listas esta vacía")    
+                else:
+                    print("La lista del casting tiene "+str(len(lista1))+" elementos")
+                    print("La lista con los detalles tiene "+str(len(lista2))+" elementos")
             elif int(inputs[0])==3: #opcion 3
                 lista=int(input("Digite numero ( 1 o 2) para buscar en una lista especifica: "))
                 criteria =input('Ingrese el criterio de búsqueda\n')
-                columna=input("Ingrese la columna: ")
+                columna=str(input("Digite la columna: "))
                 if lista==1:
-                    counter=countElementsFilteredByColumn(criteria, columna, lista1) #filtrar una columna por criterio  
+                    counter=countElementsFilteredByColumn(criteria,columna,lista1) #filtrar una columna por criterio  
                     print("Coinciden ",counter," elementos con el criterio: ", criteria  )
                 elif lista==2:
                     counter=countElementsFilteredByColumn(criteria,columna, lista2) #filtrar una columna por criterio  
@@ -209,6 +209,7 @@ def main():
                 print("Las peliculas que el director",criteria,"tiene bien votadas y su promedio son respectivamente",counter)
             elif int(inputs[0])==0: #opcion 0, salir
                 sys.exit(0)
+
 
 if __name__ == "__main__":
     main()
