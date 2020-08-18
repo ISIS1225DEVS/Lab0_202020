@@ -100,7 +100,20 @@ def countElementsFilteredByColumn(criteria, column, lst):
         t1_stop = process_time() #tiempo final
         print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
     return counter
-
+def promedio_votos_peli(lista_ids,lst):
+    
+    suma_votos = 0
+    for id in lista_ids:
+        i = 0
+        while i < len(lst):
+            posible_id = lst[i]["id"]
+            if posible_id == id:
+                vote = float(lst[i]["vote_average"])
+                suma_votos = suma_votos + vote
+            i +=1
+ 
+    promedio = suma_votos / len(lista_ids)
+    return promedio
 def countElementsByCriteria(criteria, column, lst1, lst2):
     """
     Retorna la cantidad de elementos que cumplen con un criterio para una columna dada
