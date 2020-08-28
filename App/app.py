@@ -178,6 +178,9 @@ def ranking_genero(genero:str, num_peliculas:int, lst1:list, lst2:list,criterio:
             
         j = j + 1
     
+
+
+    
     if criterio == 1:
         busqueda = vote_count_lt
     if criterio == 2:
