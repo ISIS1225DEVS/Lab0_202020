@@ -67,3 +67,7 @@ def mergesort(lst, lessfunction):
             j += 1
             k += 1
 
+
+def lessfuncition(elem1,elem2):
+
+    return int(elem1["vote_average"]) > int(elem2["vote_average"])
