@@ -72,6 +72,7 @@ def printMenu():
     print("2- Contar los elementos de la Lista")
     print("3- Contar elementos filtrados por palabra clave")
     print("4- Consultar elementos a partir de dos listas")
+    print("6- Ranking de películas")
     print("0- Salir")
 
 def countElementsFilteredByColumn(criteria, column, lst):
@@ -100,6 +101,18 @@ def countElementsFilteredByColumn(criteria, column, lst):
         t1_stop = process_time() #tiempo final
         print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
     return counter
+
+def promedio_votos_peli(lista_ids,lst):
+    
+    suma_votos = 0
+    for id in lista_ids:
+        i = 0
+        while i < len(lst):
+            posible_id = lst[i]["id"]
+            if posible_id == id:
+                vote = float(lst[i]["vote_average"])
+                suma_votos = suma_votos + vote
+            i +=1
 
 def countElementsByCriteria(criteria, column, lst1, lst2):
     """
