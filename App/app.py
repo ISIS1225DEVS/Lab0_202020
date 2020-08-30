@@ -156,7 +156,6 @@ def countElementsByCriteria(criteria, column, lst1, lst2):
     return counter , promedio
 
 def greater_rating(elem1,elem2):
-
     return float(elem1["vote_average"]) > float(elem2["vote_average"])
 
 def greater_num(elem1,elem2):
@@ -176,8 +175,7 @@ def ranking_genero(genero:str, num_peliculas:int, lst1:list, lst2:list,criterio:
             movie_vote_count = float(lst1[j]["vote_count"])
             
             movie = {'movie_name': movie_name, 'vote_average': movie_vote_average, 'vote_count': movie_vote_count}
-            lt.addLast(movies_lt,movie)
-                 
+            lt.addLast(movies_lt,movie)             
         j = j + 1
 
     if criterio == 1:
@@ -185,21 +183,15 @@ def ranking_genero(genero:str, num_peliculas:int, lst1:list, lst2:list,criterio:
     if criterio == 2:
          mg.mergesort(movies_lt,greater_rating) 
 
-
     pedazo_mejores = lt.subList(movies_lt,1,num_peliculas)
     pos_inicial_peores = lt.size(movies_lt)-num_peliculas
     pedazo_peores = lt.subList(movies_lt,pos_inicial_peores,num_peliculas)
-
 
     t1_stop = process_time() #tiempo final
     print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
     return pedazo_mejores["elements"] , pedazo_peores["elements"]
  
-                
-
-    
-    
-
+            
 def main():
     """
     Método principal del programa, se encarga de manejar todos los metodos adicionales creados
@@ -261,7 +253,7 @@ def main():
                 numero = int(input("Ingrese el número de películas que quiere ver en el ranking:\n"))
                 criterio= int(input("Ingrese:\n1. Si quiere ordenar por Número de votos.\n2. Si quiere ordenar por Calificación.\n"))
                 ranking=ranking_genero(genero,numero,lista_1,lista_2,criterio)
-                print("El TOP ",numero," de mejores peículas es:\n",ranking[0],"\n\nEl TOP ",numero,"de peores películas es:\n",ranking[1])
+                print("El TOP ",numero," de mejores peículas es: (Nombre, Calificación, Número de votos)\n",ranking[0],"\n\nEl TOP ",numero,"de peores películas es:(Nombre, Calificación, Número de votos)\n",ranking[1])
 
 if __name__ == "__main__":
     main()
