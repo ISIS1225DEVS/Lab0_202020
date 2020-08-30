@@ -115,7 +115,6 @@ def promedio_votos_peli(lista_ids,lst):
                 vote = float(lst[i]["vote_average"])
                 suma_votos = suma_votos + vote
             i +=1
-
     promedio = suma_votos / len(lista_ids)
     return promedio
 
@@ -244,7 +243,7 @@ def main():
             elif int(inputs[0])==4: #opcion 4
                 criteria =input('Ingrese el criterio de búsqueda\n')
                 counter=countElementsByCriteria(criteria,12,lista_1,lista_2)
-                print("Coinciden ",counter," elementos con el crtierio: '", criteria)
+                print("Coinciden ",counter[0]," elementos con el crtierio: '", criteria, "\nCon un promedio de votos de: ", counter[1])
             elif int(inputs[0])==0: #opcion 0, salir
                 sys.exit(0)
 
